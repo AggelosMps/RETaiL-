@@ -3,6 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class MethodsUser {
     public static Scanner scanner = new Scanner(System.in);
+    public static int count_employee=1;
     public static int count_name=1;
     public static int count_pr_now=1;
     public static int count_pr_yesterday=1;
@@ -51,10 +52,12 @@ public class MethodsUser {
         epilogesDiadikasia(answer);   
     }
     public static void insertdata(String username) {
-        insertOperating_days(username);
-        insertStore_Opening_Time(username);
-        insertStore_Closing_Time(username);
-        insertEmployees(username);
+        insertEmployee_data(username);
+        insertEmployee_data(username);
+        insertEmployee_data(username);
+        insertEmployee_data(username);
+        insertEmployee_data(username);
+        //
         insertProduct_Name(username);
         insertProduct_Now(username);
         insertProduct_Yesterday(username);
@@ -69,6 +72,7 @@ public class MethodsUser {
         insertPrice(username);
         insertProduct_Cost(username);
         //
+        
         insertProduct_Name(username);
         insertProduct_Now(username);
         insertProduct_Yesterday(username);
@@ -90,57 +94,15 @@ public class MethodsUser {
         insertPrice(username);
         insertProduct_Cost(username);
     }
-    public static void insertOperating_days(String username) {
+    public static void insertEmployee_data(String username) {
         boolean y = true;
         while (y) {
-            System.out.println("Πόσες μέρες λειτουργεί το κατάστημα;");            
-            int operating_days = scanner.nextInt();
-            if (operating_days > 0) {
-                y = false;
-                UseDB.insertIntoDBInt("operating_days", operating_days, username);
-            } else {
-                System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
-            }
-        }
-    }
-    public static void insertStore_Opening_Time(String username) {
-        boolean y = true;
-        while (y) {
-            System.out.println("Τι ώρα ανοίγει το κατάστημα");            
+            System.out.println("Καταχωρήστε στοιχεία για τον εργαζόμενο "+count_employee+" στην μορφή: Όνομα, Μέρα που μπορεί να εργαστεί, Ώρα έναρξης, Ώρα λήξης βάρδιας, (Επαναλάβετε για όσες μέρες μπορεί)");           
             try {
-                if (scanner.hasNext()) {
-                    scanner.nextLine();// clear the input buffer
-                }
-                String Store_Opening_Time = scanner.nextLine();
-                UseDB.insertIntoDBString("Store_Opening_Time", Store_Opening_Time, username);
+                String employee = scanner.nextLine();
+                UseDB.insertIntoDBString("employee"+count_employee++, employee, username);
                 y = false;
             } catch (InputMismatchException e) {
-                System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
-            }
-        }
-    }
-    public static void insertStore_Closing_Time(String username) {
-        boolean y = true;
-        while (y) {
-            System.out.println("Τι ώρα κλείνει το κατάστημα");            
-            try {
-                String Store_Closing_Time = scanner.nextLine();
-                UseDB.insertIntoDBString("Store_Closing_Time", Store_Closing_Time, username);
-                y = false;
-            } catch (InputMismatchException e) {
-                System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
-            }
-        }
-    }
-    public static void insertEmployees(String username) {
-        boolean y = true;
-        while (y) {
-            System.out.println("Πόσους εργαζόμενους έχει η επιχείρηση;");         
-            int employees = scanner.nextInt();
-            if (employees > 0) {
-                y = false;
-                UseDB.insertIntoDBInt("employees", employees, username);
-            } else {
                 System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
             }
         }
@@ -148,11 +110,11 @@ public class MethodsUser {
     public static void insertProduct_Name(String username) {
         boolean y = true;
         while (y) {
-            System.out.println("Καταχωρήστε όνομα για προιόν"+count_name);
-            if (scanner.hasNext()) {
-                    scanner.nextLine();// clear the input buffer
-            }            
+            System.out.println("Καταχωρήστε όνομα για προιόν"+count_name);         
             try {
+                if (scanner.hasNext()) {
+                    scanner.nextLine();// clear the input buffer
+                }  
                 String product_name = scanner.nextLine();
                 UseDB.insertIntoDBString("product_name"+count_name++, product_name, username);
                 y = false;
