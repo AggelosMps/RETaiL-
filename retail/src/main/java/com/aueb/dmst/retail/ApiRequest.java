@@ -16,24 +16,24 @@ public class ApiRequest {
         return response;
     }
 
-    public static String getPrice() {
+    public static String getPrice(String user) {
         String systemMessage = "You are a manager in a supermarket. I will give you a product name, selling price, purchase cost, quantity of the product now, quantity of the product yesterday, and quantity of the product the day before yesterday. Give me a new selling price. Calculate the price using the supply and demand, the  category of the product, the difference between the selling price and the purchase costand display it in the exact form using 2 tokens. Name of the product, new price.";
-        String userMessage = Data.getPrice();
+        String userMessage = user;
         String response =  extractContent(chatGptConnection(systemMessage, userMessage));
         return response;
     }
 
-    public static String getSchedule() {
+    public static String getSchedule(String user) {
         //String systemMessage = "The application involves creating a schedule for a supermarket. I will provide you with the operating days and hours of the store in the format <Day>, <store opening time>, <store closing time>, and Staff with the hours they can work in the format <employee name>, <Day they can work>, <hours they can work for that day>. Each store must have exactly 2 employees at the same time, each employee can work up to 8 hours a day. I want the results in the following format: <Day>, <employee name>, <start time of their schedule>, <end time of their schedule>, without any other comment";
         String systemMessage = "The application involves creating a schedule for a supermarket. I will provide you with the operating days and hours of the store in the format Day, store opening time, store closing time, and Staff with the hours they can work in the format employee name, Day they can work, hours they can work for that day. Each store must have 2 employees at the same time, each employee can work up to 8 hours a day. Display it in the exact form using 2 tokens. <Day>, <employee name>, <start time of their schedule>, <end time of their schedule>";
-        String userMessage = Data.getSchedule();
+        String userMessage = user;
         String response =  extractContent(chatGptConnection(systemMessage, userMessage));
         return response;
     }
 
-    public static String getCategorization() {
+    public static String getCategorization(String user) {
         String systemMessage = "You are a supermarket application that will help in extracting financial information. You will receive in the format: product name, sales_profit and you will return in the same format only the product category, total sales profit of category";
-        String userMessage = Data.getCategorization();
+        String userMessage = user;
         String response =  extractContent(chatGptConnection(systemMessage, userMessage));
         return response;
     }
