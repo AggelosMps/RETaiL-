@@ -238,6 +238,11 @@ public class MethodsUser {
             String price5 = UseDB.selectFromTableString(username, "product_name5") + "," + UseDB.selectFromTableNumber(username, "price5") +
             "," + UseDB.selectFromTableNumber(username, "pr_cost5") + "," + UseDB.selectFromTableNumber(username, "pr_now5") + "," +
             UseDB.selectFromTableNumber(username, "pr_yesterday5") + "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday5");
+            System.out.println(ApiRequest.getPrice(price1));
+            System.out.println(ApiRequest.getPrice(price2));
+            System.out.println(ApiRequest.getPrice(price3));
+            System.out.println(ApiRequest.getPrice(price4));
+            System.out.println(ApiRequest.getPrice(price5));
         } else if (answer == 3) {
 
         } else if (answer == 4) {
