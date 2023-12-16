@@ -9,9 +9,9 @@ import java.io.IOException;
 
 public class ApiRequest {
     
-    public static String getApothema() {
+    public static String getApothema(String user) {
         String systemMessage = "You are a manager in a supermarket. I will give you a product name, quantity of the product now, quantity of the product yesterday, and quantity of the product the day before yesterday. How much product should I buy. Calculate the product using the supply and demand product and display it in the exact form using 2 tokens. Name of the product, quantity I should buy.";
-        String userMessage = Data.getApothemata();
+        String userMessage = user;
         String response =  extractContent(chatGptConnection(systemMessage, userMessage));
         return response;
     }

@@ -1,6 +1,8 @@
 package com.aueb.dmst.retail;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.plaf.synth.SynthScrollBarUI;
 public class MethodsUser {
     public static Scanner scanner = new Scanner(System.in);
     public static int count_employee=1;
@@ -219,6 +221,7 @@ public class MethodsUser {
             "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday4") + UseDB.selectFromTableString(username, "product_name5") + 
             "," + UseDB.selectFromTableNumber(username, "pr_now5") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday5") + 
             "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday5");
+            System.out.println(ApiRequest.getApothema(apothema));
         } else if (answer == 2) {
             String price1 = UseDB.selectFromTableString(username, "product_name1") + "," + UseDB.selectFromTableNumber(username, "price1") +
             "," + UseDB.selectFromTableNumber(username, "pr_cost1") + "," + UseDB.selectFromTableNumber(username, "pr_now1") + "," +
