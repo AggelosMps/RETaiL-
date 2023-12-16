@@ -244,8 +244,12 @@ public class MethodsUser {
             System.out.println(ApiRequest.getPrice(price4));
             System.out.println(ApiRequest.getPrice(price5));
         } else if (answer == 3) {
-
+            String programma = UseDB.selectFromTableString(username, "employee1") + "," + UseDB.selectFromTableString(username, "employee2") +
+            "," + UseDB.selectFromTableString(username, "employee3") + "," + UseDB.selectFromTableString(username, "employee4") + "," + 
+            UseDB.selectFromTableString(username, "employee5");
+            System.out.println(ApiRequest.getSchedule(programma));
         } else if (answer == 4) {
+            
         }
 
     }
