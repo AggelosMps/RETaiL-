@@ -77,7 +77,10 @@ public class ApiRequest {
             // Return response body
             return response.body();
 
-        } catch (Exception e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }catch (Exception e) {
             e.printStackTrace();
             return null;
         }
