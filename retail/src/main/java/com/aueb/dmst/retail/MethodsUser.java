@@ -29,7 +29,7 @@ public class MethodsUser {
         scanner.nextLine();
         return answer;
     }
-    public static void epilogesMenu() {
+    public static void epilogesMenu(String username) {
         boolean flag = true;
         int answer = 0;
         while (flag) {    
@@ -49,7 +49,7 @@ public class MethodsUser {
                 System.out.println("Παρακαλούμε επιλέξτε ένα απο τα ακόλουθα.");
             }
         }
-        epilogesDiadikasia(answer);   
+        epilogesDiadikasia(answer,username);   
     }
     public static void insertdata(String username) {
         insertEmployee_data(username);
@@ -205,20 +205,42 @@ public class MethodsUser {
 
 
 
-    public static void epilogesDiadikasia(int answer) {
+    public static void epilogesDiadikasia(int answer,String username) {
         // kalei tis katalhlles methodous gia thn leitourgia pou epeleje o xrhsths
         if (answer==1) {
-            //kaleite tis methodous gia to chatgpt
-        } else {
+            String apothema = UseDB.selectFromTableString(username, "product_name1") + "," + 
+            UseDB.selectFromTableNumber(username, "pr_now1") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday1") + "," + 
+            UseDB.selectFromTableNumber(username, "pr_db_yesterday1") + "," + UseDB.selectFromTableString(username, "product_name2") + "," + 
+            UseDB.selectFromTableNumber(username, "pr_now2") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday2") + "," + 
+            UseDB.selectFromTableNumber(username, "pr_db_yesterday2") + UseDB.selectFromTableString(username, "product_name3") +
+            "," + UseDB.selectFromTableNumber(username, "pr_now3") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday3") +
+            "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday3") + UseDB.selectFromTableString(username, "product_name4") +
+            "," + UseDB.selectFromTableNumber(username, "pr_now4") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday4") + 
+            "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday4") + UseDB.selectFromTableString(username, "product_name5") + 
+            "," + UseDB.selectFromTableNumber(username, "pr_now5") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday5") + 
+            "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday5");
+        } else if (answer == 2) {
+            String price1 = UseDB.selectFromTableString(username, "product_name1") + "," + UseDB.selectFromTableNumber(username, "price1") +
+            "," + UseDB.selectFromTableNumber(username, "pr_cost1") + "," + UseDB.selectFromTableNumber(username, "pr_now1") + "," +
+            UseDB.selectFromTableNumber(username, "pr_yesterday1") + "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday1");
+            String price2 = UseDB.selectFromTableString(username, "product_name2") + "," + UseDB.selectFromTableNumber(username, "price2") +
+            "," + UseDB.selectFromTableNumber(username, "pr_cost2") + "," + UseDB.selectFromTableNumber(username, "pr_now2") + "," +
+            UseDB.selectFromTableNumber(username, "pr_yesterday2") + "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday2");
+            String price3 = UseDB.selectFromTableString(username, "product_name3") + "," + UseDB.selectFromTableNumber(username, "price3") +
+            "," + UseDB.selectFromTableNumber(username, "pr_cost3") + "," + UseDB.selectFromTableNumber(username, "pr_now3") + "," +
+            UseDB.selectFromTableNumber(username, "pr_yesterday3") + "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday3");
+            String price4 = UseDB.selectFromTableString(username, "product_name4") + "," + UseDB.selectFromTableNumber(username, "price4") +
+            "," + UseDB.selectFromTableNumber(username, "pr_cost4") + "," + UseDB.selectFromTableNumber(username, "pr_now4") + "," +
+            UseDB.selectFromTableNumber(username, "pr_yesterday4") + "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday4");
+            String price5 = UseDB.selectFromTableString(username, "product_name5") + "," + UseDB.selectFromTableNumber(username, "price5") +
+            "," + UseDB.selectFromTableNumber(username, "pr_cost5") + "," + UseDB.selectFromTableNumber(username, "pr_now5") + "," +
+            UseDB.selectFromTableNumber(username, "pr_yesterday5") + "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday5");
+        } else if (answer == 3) {
 
+        } else if (answer == 4) {
         }
+
     }
-    //UseDB.selectFromTableNumber("Agg","product_name1");
-
-
-
-
-
 
     public static void newuser(String username, String password) {
         UseDB.syndeshxrhsthprotifora(username);

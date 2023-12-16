@@ -9,8 +9,8 @@ public class Options {
             if (UseDB.checkfores(username) == 0) {
                 UseDB.elegxossyndesis(username);
                 MethodsUser.insertdata(username);
-            }
-            
+                MethodsUser.epilogesMenu(username);
+            } 
         } else {
             System.out.println("Login failed.Incorrect username or password.");
         }
