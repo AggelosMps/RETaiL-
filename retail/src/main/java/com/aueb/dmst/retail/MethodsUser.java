@@ -53,42 +53,16 @@ public class MethodsUser {
         }
         epilogesDiadikasia(answer,username);   
     }
-    public static void insertdata(String username) {
+    
+    public static void insertdataEmployee(String username) {
         insertEmployee_data(username);
         insertEmployee_data(username);
         insertEmployee_data(username);
         insertEmployee_data(username);
         insertEmployee_data(username);
-        //
-        insertProduct_Name(username);
-        insertProduct_Now(username);
-        insertProduct_Yesterday(username);
-        insertProduct_Db_Yesterday(username);
-        insertPrice(username);
-        insertProduct_Cost(username);
-        //
-        insertProduct_Name(username);
-        insertProduct_Now(username);
-        insertProduct_Yesterday(username);         //Μπορούμε να την σπάσουμε σε 5 μεθόδους
-        insertProduct_Db_Yesterday(username);
-        insertPrice(username);
-        insertProduct_Cost(username);
-        //
-        
-        insertProduct_Name(username);
-        insertProduct_Now(username);
-        insertProduct_Yesterday(username);
-        insertProduct_Db_Yesterday(username);
-        insertPrice(username);
-        insertProduct_Cost(username);
-        //
-        insertProduct_Name(username);
-        insertProduct_Now(username);
-        insertProduct_Yesterday(username);
-        insertProduct_Db_Yesterday(username);
-        insertPrice(username);
-        insertProduct_Cost(username);
-        //
+    }
+
+    public static void insertdataProduct1(String username) {
         insertProduct_Name(username);
         insertProduct_Now(username);
         insertProduct_Yesterday(username);
@@ -96,6 +70,52 @@ public class MethodsUser {
         insertPrice(username);
         insertProduct_Cost(username);
     }
+
+    public static void insertdataProduct2(String username) {
+        insertProduct_Name(username);
+        insertProduct_Now(username);
+        insertProduct_Yesterday(username);        
+        insertProduct_Db_Yesterday(username);
+        insertPrice(username);
+        insertProduct_Cost(username);
+    }
+
+    public static void insertdataProduct3(String username) {
+        insertProduct_Name(username);
+        insertProduct_Now(username);
+        insertProduct_Yesterday(username);
+        insertProduct_Db_Yesterday(username);
+        insertPrice(username);
+        insertProduct_Cost(username);
+    }
+
+    public static void insertdataProduct4(String username) {
+        insertProduct_Name(username);
+        insertProduct_Now(username);
+        insertProduct_Yesterday(username);
+        insertProduct_Db_Yesterday(username);
+        insertPrice(username);
+        insertProduct_Cost(username);
+    }
+
+    public static void insertdataProduct5(String username) {
+        insertProduct_Name(username);
+        insertProduct_Now(username);
+        insertProduct_Yesterday(username);
+        insertProduct_Db_Yesterday(username);
+        insertPrice(username);
+        insertProduct_Cost(username);
+    }
+
+    public static void insertdata(String username) {
+        insertdataEmployee(username);
+        insertdataProduct1(username);
+        insertdataProduct2(username);
+        insertdataProduct3(username);
+        insertdataProduct4(username);
+        insertdataProduct5(username);
+    }
+
     public static void insertEmployee_data(String username) {
         boolean y = true;
         while (y) {
