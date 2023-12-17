@@ -268,6 +268,10 @@ public class MethodsUser {
             double revenues_today2;
             double revenues_yesterday3;
             double revenues_today3;
+            double revenues_yesterday4;
+            double revenues_today4;
+            double revenues_yesterday5;
+            double revenues_today5;
             //product1
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday1").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday1")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday1").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday1").intValue());
@@ -310,6 +314,41 @@ public class MethodsUser {
                 revenues_today3 = 0;
             }
             double total_revenues3 = revenues_today3 + revenues_yesterday3;
+            //product 4
+            if ((UseDB.selectFromTableNumber(username, "pr_yesterday4").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday4")).intValue()) {
+                aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday4").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday4").intValue());
+                revenues_yesterday4 = aDifference * (UseDB.selectFromTableNumber(username, "price4").doubleValue());
+            } else {
+                revenues_yesterday4 = 0;
+            }
+            if ((UseDB.selectFromTableNumber(username, "pr_now4").intValue()) < (UseDB.selectFromTableNumber(username, "pr_yesterday4")).intValue()) {
+                aDifference = (UseDB.selectFromTableNumber(username, "pr_yesterday4").intValue()) - (UseDB.selectFromTableNumber(username, "pr_now4").intValue());
+                revenues_today4 = aDifference * (UseDB.selectFromTableNumber(username, "price4").doubleValue());
+            } else {
+                revenues_today4 = 0;
+            }
+            double total_revenues4 = revenues_today4 + revenues_yesterday4;
+            //product5
+            if ((UseDB.selectFromTableNumber(username, "pr_yesterday5").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday5")).intValue()) {
+                aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday5").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday5").intValue());
+                revenues_yesterday5 = aDifference * (UseDB.selectFromTableNumber(username, "price5").doubleValue());
+            } else {
+                revenues_yesterday5 = 0;
+            }
+            if ((UseDB.selectFromTableNumber(username, "pr_now5").intValue()) < (UseDB.selectFromTableNumber(username, "pr_yesterday5")).intValue()) {
+                aDifference = (UseDB.selectFromTableNumber(username, "pr_yesterday5").intValue()) - (UseDB.selectFromTableNumber(username, "pr_now5").intValue());
+                revenues_today5 = aDifference * (UseDB.selectFromTableNumber(username, "price5").doubleValue());
+            } else {
+                revenues_today5 = 0;
+            }
+            double total_revenues5 = revenues_today5 + revenues_yesterday5;
+            double total_Revenues = total_revenues1 + total_revenues2 + total_revenues3 + total_revenues4 + total_revenues5;
+            System.out.println("Έσοδα για προϊόν 1: " + total_revenues1);
+            System.out.println("Έσοδα για προϊόν 2: " + total_revenues2);
+            System.out.println("Έσοδα για προϊόν 3: " + total_revenues3);
+            System.out.println("Έσοδα για προϊόν 4: " + total_revenues4);
+            System.out.println("Έσοδα για προϊόν 5: " + total_revenues5);
+            System.out.println("Συνολικά έσοδα προϊόντων: " + total_Revenues);
             
             
         }
