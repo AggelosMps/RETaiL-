@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
+//Θα πρέπει να εισάγω την κλάση InsertIntoDB
 
 public class UseDB {
     public static Connection connection = null;
@@ -158,7 +159,7 @@ public class UseDB {
             e.printStackTrace();
         }
     }
-    public static void insertIntoDBString(String column, String value,String username) {
+    public static void insertIntoDBString(String column, String value,String username) { //Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Manager_data.db");
             Statement statement = connection.createStatement();
@@ -170,7 +171,7 @@ public class UseDB {
             e.printStackTrace();
         }
     }
-    public static void insertIntoDBInt(String column, int value, String username) {
+    public static void insertIntoDBInt(String column, int value, String username) { //Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Manager_data.db");
             Statement statement = connection.createStatement();

@@ -1,6 +1,7 @@
 package com.aueb.dmst.retail;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+//Θα πρέπει να καλέσω την κλάση InsertIntoDB
 
 import javax.swing.plaf.synth.SynthScrollBarUI;
 public class MethodsUser {
@@ -54,7 +55,7 @@ public class MethodsUser {
         epilogesDiadikasia(answer,username);   
     }
     
-    public static void insertdataEmployee(String username) {
+    public static void insertdataEmployee(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         insertEmployee_data(username);
         insertEmployee_data(username);
         insertEmployee_data(username);
@@ -62,7 +63,7 @@ public class MethodsUser {
         insertEmployee_data(username);
     }
 
-    public static void insertdataProduct1(String username) {
+    public static void insertdataProduct1(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         insertProduct_Name(username);
         insertProduct_Now(username);
         insertProduct_Yesterday(username);
@@ -71,7 +72,7 @@ public class MethodsUser {
         insertProduct_Cost(username);
     }
 
-    public static void insertdataProduct2(String username) {
+    public static void insertdataProduct2(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         insertProduct_Name(username);
         insertProduct_Now(username);
         insertProduct_Yesterday(username);        
@@ -80,7 +81,7 @@ public class MethodsUser {
         insertProduct_Cost(username);
     }
 
-    public static void insertdataProduct3(String username) {
+    public static void insertdataProduct3(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         insertProduct_Name(username);
         insertProduct_Now(username);
         insertProduct_Yesterday(username);
@@ -89,7 +90,7 @@ public class MethodsUser {
         insertProduct_Cost(username);
     }
 
-    public static void insertdataProduct4(String username) {
+    public static void insertdataProduct4(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         insertProduct_Name(username);
         insertProduct_Now(username);
         insertProduct_Yesterday(username);
@@ -98,7 +99,7 @@ public class MethodsUser {
         insertProduct_Cost(username);
     }
 
-    public static void insertdataProduct5(String username) {
+    public static void insertdataProduct5(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         insertProduct_Name(username);
         insertProduct_Now(username);
         insertProduct_Yesterday(username);
@@ -107,7 +108,7 @@ public class MethodsUser {
         insertProduct_Cost(username);
     }
 
-    public static void insertdata(String username) {
+    public static void insertdata(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         insertdataEmployee(username);
         insertdataProduct1(username);
         insertdataProduct2(username);
@@ -116,7 +117,7 @@ public class MethodsUser {
         insertdataProduct5(username);
     }
 
-    public static void insertEmployee_data(String username) {
+    public static void insertEmployee_data(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;
         while (y) {
             System.out.println("Καταχωρήστε στοιχεία για τον εργαζόμενο "+count_employee+" στην μορφή: Όνομα, Μέρα που μπορεί να εργαστεί, Ώρα έναρξης, Ώρα λήξης βάρδιας, (Επαναλάβετε για όσες μέρες μπορεί)");           
@@ -129,7 +130,7 @@ public class MethodsUser {
             }
         }
     }
-    public static void insertProduct_Name(String username) {
+    public static void insertProduct_Name(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;
         while (y) {
             System.out.println("Καταχωρήστε όνομα για προιόν"+count_name);         
@@ -145,7 +146,7 @@ public class MethodsUser {
             }
         }
     }
-    public static void insertProduct_Now(String username) {
+    public static void insertProduct_Now(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;       
         while (y) {
             System.out.println("Καταχωρήστε σημερινή ποσότητα για προιόν"+count_pr_now);           
@@ -158,7 +159,7 @@ public class MethodsUser {
             }
         }
     }
-    public static void insertProduct_Yesterday(String username) {
+    public static void insertProduct_Yesterday(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;       
         while (y) {
             System.out.println("Καταχωρήστε χθεσινή ποσότητα για προιόν"+count_pr_yesterday);
@@ -174,7 +175,7 @@ public class MethodsUser {
             }
         }
     }
-    public static void insertProduct_Db_Yesterday(String username) {
+    public static void insertProduct_Db_Yesterday(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;       
         while (y) {
             System.out.println("Καταχωρήστε προχθεσινή ποσότητα για προιόν"+count_pr_db_yesterday);
@@ -190,7 +191,7 @@ public class MethodsUser {
             }
         }
     }
-    public static void insertPrice(String username) {
+    public static void insertPrice(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;
         while (y) {
             System.out.println("Ποιά είναι η τιμή για προιόν"+count_price);
@@ -206,7 +207,7 @@ public class MethodsUser {
             }
         }
     }
-    public static void insertProduct_Cost(String username) {
+    public static void insertProduct_Cost(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;
         while (y) {
             System.out.println("Ποιό είναι το κόστος για προιόν"+count_pr_cost);
@@ -223,10 +224,6 @@ public class MethodsUser {
         }
     }
     
-
-
-
-
     public static void epilogesDiadikasia(int answer,String username) {
         // kalei tis katalhlles methodous gia thn leitourgia pou epeleje o xrhsths
         if (answer==1) {
