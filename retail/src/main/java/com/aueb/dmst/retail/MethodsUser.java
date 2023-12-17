@@ -210,18 +210,28 @@ public class MethodsUser {
     public static void epilogesDiadikasia(int answer,String username) {
         // kalei tis katalhlles methodous gia thn leitourgia pou epeleje o xrhsths
         if (answer==1) {
-            String apothema = UseDB.selectFromTableString(username, "product_name1") + "," + 
+            String apothema1 = UseDB.selectFromTableString(username, "product_name1") + "," + 
             UseDB.selectFromTableNumber(username, "pr_now1") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday1") + "," + 
-            UseDB.selectFromTableNumber(username, "pr_db_yesterday1") + "," + UseDB.selectFromTableString(username, "product_name2") + "," + 
+            UseDB.selectFromTableNumber(username, "pr_db_yesterday1");
+            String apothema2 = UseDB.selectFromTableString(username, "product_name2") + "," + 
             UseDB.selectFromTableNumber(username, "pr_now2") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday2") + "," + 
-            UseDB.selectFromTableNumber(username, "pr_db_yesterday2") + UseDB.selectFromTableString(username, "product_name3") +
+            UseDB.selectFromTableNumber(username, "pr_db_yesterday2");
+            String apothema3 = UseDB.selectFromTableString(username, "product_name3") +
             "," + UseDB.selectFromTableNumber(username, "pr_now3") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday3") +
-            "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday3") + UseDB.selectFromTableString(username, "product_name4") +
+            "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday3");
+            String apothema4 = UseDB.selectFromTableString(username, "product_name4") +
             "," + UseDB.selectFromTableNumber(username, "pr_now4") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday4") + 
-            "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday4") + UseDB.selectFromTableString(username, "product_name5") + 
+            "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday4"); 
+            String apothema5 = UseDB.selectFromTableString(username, "product_name5") + 
             "," + UseDB.selectFromTableNumber(username, "pr_now5") + "," + UseDB.selectFromTableNumber(username, "pr_yesterday5") + 
             "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday5");
-            System.out.println(ApiRequest.getApothema(apothema));
+            
+            System.out.println(ApiRequest.getApothema(apothema1));
+            System.out.println(ApiRequest.getApothema(apothema2));
+            System.out.println(ApiRequest.getApothema(apothema3));
+            System.out.println(ApiRequest.getApothema(apothema4));
+            System.out.println(ApiRequest.getApothema(apothema5));
+
         } else if (answer == 2) {
             String price1 = UseDB.selectFromTableString(username, "product_name1") + "," + UseDB.selectFromTableNumber(username, "price1") +
             "," + UseDB.selectFromTableNumber(username, "pr_cost1") + "," + UseDB.selectFromTableNumber(username, "pr_now1") + "," +
@@ -238,11 +248,13 @@ public class MethodsUser {
             String price5 = UseDB.selectFromTableString(username, "product_name5") + "," + UseDB.selectFromTableNumber(username, "price5") +
             "," + UseDB.selectFromTableNumber(username, "pr_cost5") + "," + UseDB.selectFromTableNumber(username, "pr_now5") + "," +
             UseDB.selectFromTableNumber(username, "pr_yesterday5") + "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday5");
+            
             System.out.println(ApiRequest.getPrice(price1));
             System.out.println(ApiRequest.getPrice(price2));
             System.out.println(ApiRequest.getPrice(price3));
             System.out.println(ApiRequest.getPrice(price4));
             System.out.println(ApiRequest.getPrice(price5));
+            
         } else if (answer == 3) {
             String programma = UseDB.selectFromTableString(username, "employee1") + "," + UseDB.selectFromTableString(username, "employee2") +
             "," + UseDB.selectFromTableString(username, "employee3") + "," + UseDB.selectFromTableString(username, "employee4") + "," + 
