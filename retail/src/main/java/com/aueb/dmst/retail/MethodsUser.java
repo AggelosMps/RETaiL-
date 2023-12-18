@@ -1,4 +1,7 @@
 package com.aueb.dmst.retail;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 //Θα πρέπει να καλέσω την κλάση InsertIntoDB
@@ -223,6 +226,18 @@ public class MethodsUser {
             }
         }
     }
+
+    public static void answersChatGPT(String answer, String username) {
+        String filename = username + ".txt";
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename,true));
+            writer.write(answer);
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }  
+    }
     
     public static void epilogesDiadikasia(int answer,String username) {
         // kalei tis katalhlles methodous gia thn leitourgia pou epeleje o xrhsths
@@ -244,10 +259,15 @@ public class MethodsUser {
             "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday5");
             
             System.out.println(ApiRequest.getApothema(apothema1));
+            answersChatGPT(ApiRequest.getApothema(apothema1), username);
             System.out.println(ApiRequest.getApothema(apothema2));
+            answersChatGPT(ApiRequest.getApothema(apothema2), username);
             System.out.println(ApiRequest.getApothema(apothema3));
+            answersChatGPT(ApiRequest.getApothema(apothema3), username);
             System.out.println(ApiRequest.getApothema(apothema4));
+            answersChatGPT(ApiRequest.getApothema(apothema4), username);
             System.out.println(ApiRequest.getApothema(apothema5));
+            answersChatGPT(ApiRequest.getApothema(apothema5), username);
 
         } else if (answer == 2) {
             String price1 = UseDB.selectFromTableString(username, "product_name1") + "," + UseDB.selectFromTableNumber(username, "price1") +
@@ -267,16 +287,22 @@ public class MethodsUser {
             UseDB.selectFromTableNumber(username, "pr_yesterday5") + "," + UseDB.selectFromTableNumber(username, "pr_db_yesterday5");
             
             System.out.println(ApiRequest.getPrice(price1));
+            answersChatGPT(ApiRequest.getPrice(price1), username);
             System.out.println(ApiRequest.getPrice(price2));
+            answersChatGPT(ApiRequest.getPrice(price2), username);
             System.out.println(ApiRequest.getPrice(price3));
+            answersChatGPT(ApiRequest.getPrice(price3), username);
             System.out.println(ApiRequest.getPrice(price4));
+            answersChatGPT(ApiRequest.getPrice(price4), username);
             System.out.println(ApiRequest.getPrice(price5));
+            answersChatGPT(ApiRequest.getPrice(price5), username);
             
         } else if (answer == 3) {
             String programma = UseDB.selectFromTableString(username, "employee1") + "," + UseDB.selectFromTableString(username, "employee2") +
             "," + UseDB.selectFromTableString(username, "employee3") + "," + UseDB.selectFromTableString(username, "employee4") + "," + 
             UseDB.selectFromTableString(username, "employee5");
             System.out.println(ApiRequest.getSchedule(programma));
+            answersChatGPT(programma, username);
         } else if (answer == 4) {
             int aDifference;
             double revenues_yesterday1;
@@ -303,6 +329,7 @@ public class MethodsUser {
                 revenues_today1 = 0;
             }
             double total_revenues1 = revenues_today1 + revenues_yesterday1;
+            answersChatGPT(Double.toString(total_revenues1), username);
             //product2
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday2").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday2")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday2").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday2").intValue());
@@ -317,6 +344,7 @@ public class MethodsUser {
                 revenues_today2 = 0;
             }
             double total_revenues2 = revenues_today2 + revenues_yesterday2;
+            answersChatGPT(Double.toString(revenues_today2), username);
             //product3
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday3").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday3")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday3").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday3").intValue());
@@ -331,6 +359,7 @@ public class MethodsUser {
                 revenues_today3 = 0;
             }
             double total_revenues3 = revenues_today3 + revenues_yesterday3;
+            answersChatGPT(Double.toString(revenues_today3), username);
             //product 4
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday4").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday4")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday4").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday4").intValue());
@@ -345,6 +374,7 @@ public class MethodsUser {
                 revenues_today4 = 0;
             }
             double total_revenues4 = revenues_today4 + revenues_yesterday4;
+            answersChatGPT(Double.toString(revenues_today4), username);
             //product5
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday5").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday5")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday5").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday5").intValue());
@@ -359,7 +389,9 @@ public class MethodsUser {
                 revenues_today5 = 0;
             }
             double total_revenues5 = revenues_today5 + revenues_yesterday5;
+            answersChatGPT(Double.toString(revenues_today5), username);
             double total_Revenues = total_revenues1 + total_revenues2 + total_revenues3 + total_revenues4 + total_revenues5;
+            answersChatGPT(Double.toString(total_Revenues), username);
             System.out.println("Έσοδα για προϊόν 1: " + total_revenues1);
             System.out.println("Έσοδα για προϊόν 2: " + total_revenues2);
             System.out.println("Έσοδα για προϊόν 3: " + total_revenues3);
