@@ -20,7 +20,7 @@ public class Charts extends Application {
     @Override
     public void start(Stage stage) {
 
-        if (MethodsUser.category4 == 1) {
+        if (MethodsUser.category == 1) {
            Scene pieChartScene = new Scene(new Group());
            Stage pieChartStage = new Stage();
            pieChartStage.setTitle("ΠΡΟΙΟΝΤΑ");
