@@ -16,6 +16,15 @@ public class MethodsUser {
     public static int count_pr_db_yesterday=1;
     public static int count_price=1;
     public static int count_pr_cost=1;
+    public static double total_Revenues;
+    public static double total_revenues1;
+    public static double total_revenues2;
+    public static double total_revenues3;
+    public static double total_revenues4;
+    public static double total_revenues5;
+    public static String username_local;
+    public static int category=0;
+    public static boolean flag = true;
     public static String nameUser() {
         System.out.println("Δώσε το όνομα σου");
         String user = scanner.nextLine();
@@ -36,26 +45,30 @@ public class MethodsUser {
         return answer;
     }
     public static void epilogesMenu(String username) {
-        boolean flag = true;
+        flag = true;
         int answer = 0;
+        username_local = username;
         while (flag) {    
             System.out.println("Σε ποιόν τομέα θέλετε να σας εξυπηρετήσουμε;");
             System.out.println("1. Αποθέματα (Σας προτείνει το προιόν που πρέπει να αγοράσετε για να μεγιστοποιήσετε το κέρδος σας, βάση των πωλήσεων που έχετε κάνει τις προηγούμενες 3 μέρες.)");
             System.out.println("2. Τιμολόγηση (Σας προτείνει την καλύτερη τιμή για να μεγιστοποιήσετε το κέρδος σας, βάση των πωλήσεων που έχετε κάνει τις προηγούμενες 3 μέρες.)");
             System.out.println("3. Πρόγραμμα προσωπικού (Ωρολόγιο πρόγραμμα προσωπικού.)");
             System.out.println("4. Οικονομικές καταστάσεις (Έσοδα, Έξοδα, Κέρδη επιχείρησης, έχοντας την επιλογή και για διαγραμματική αναπαράσταση.)");
+            System.out.println("5. Αλλαγή δεδομένων");
+            System.out.println("6. Αποσύνδεση");
+            System.out.println("7. Έξοδος");
             try {
                 answer = scanner.nextInt();
-                if (answer >= 0 && answer <=4) {
-                    flag = false;
+                if (answer >= 0 && answer <=7) {
+                    
+                    epilogesDiadikasia(answer,username);
                 } else {
                     System.out.println("Παρακαλούμε επιλέξτε ένα απο τα ακόλουθα.");
                 }    
             } catch (InputMismatchException e) {
                 System.out.println("Παρακαλούμε επιλέξτε ένα απο τα ακόλουθα.");
             }
-        }
-        epilogesDiadikasia(answer,username);   
+        } 
     }
     
     public static void insertdataEmployee(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
@@ -328,7 +341,7 @@ public class MethodsUser {
             } else {
                 revenues_today1 = 0;
             }
-            double total_revenues1 = revenues_today1 + revenues_yesterday1;
+            total_revenues1 = revenues_today1 + revenues_yesterday1;
             answersChatGPT(Double.toString(total_revenues1), username);
             //product2
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday2").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday2")).intValue()) {
@@ -343,7 +356,7 @@ public class MethodsUser {
             } else {
                 revenues_today2 = 0;
             }
-            double total_revenues2 = revenues_today2 + revenues_yesterday2;
+            total_revenues2 = revenues_today2 + revenues_yesterday2;
             answersChatGPT(Double.toString(revenues_today2), username);
             //product3
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday3").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday3")).intValue()) {
@@ -358,7 +371,7 @@ public class MethodsUser {
             } else {
                 revenues_today3 = 0;
             }
-            double total_revenues3 = revenues_today3 + revenues_yesterday3;
+            total_revenues3 = revenues_today3 + revenues_yesterday3;
             answersChatGPT(Double.toString(revenues_today3), username);
             //product 4
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday4").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday4")).intValue()) {
@@ -373,7 +386,7 @@ public class MethodsUser {
             } else {
                 revenues_today4 = 0;
             }
-            double total_revenues4 = revenues_today4 + revenues_yesterday4;
+            total_revenues4 = revenues_today4 + revenues_yesterday4;
             answersChatGPT(Double.toString(revenues_today4), username);
             //product5
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday5").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday5")).intValue()) {
@@ -388,9 +401,9 @@ public class MethodsUser {
             } else {
                 revenues_today5 = 0;
             }
-            double total_revenues5 = revenues_today5 + revenues_yesterday5;
+            total_revenues5 = revenues_today5 + revenues_yesterday5;
             answersChatGPT(Double.toString(revenues_today5), username);
-            double total_Revenues = total_revenues1 + total_revenues2 + total_revenues3 + total_revenues4 + total_revenues5;
+            total_Revenues = total_revenues1 + total_revenues2 + total_revenues3 + total_revenues4 + total_revenues5;
             answersChatGPT(Double.toString(total_Revenues), username);
             System.out.println("Έσοδα για προϊόν 1: " + total_revenues1);
             System.out.println("Έσοδα για προϊόν 2: " + total_revenues2);
@@ -398,8 +411,63 @@ public class MethodsUser {
             System.out.println("Έσοδα για προϊόν 4: " + total_revenues4);
             System.out.println("Έσοδα για προϊόν 5: " + total_revenues5);
             System.out.println("Συνολικά έσοδα προϊόντων: " + total_Revenues);
+            category=1;
             
-            
+        } else if(answer==5) {
+            flag= true;
+            boolean flag3=false;
+            boolean flag4=false;
+            while(!flag3) {
+                try {   
+                    System.out.println("Αν θα θέλατε να αλλάξετε στοιχεία απο το πρόγραμμα προσωπικού πατήστε (1), αλλιώς αν θα θέλατε να αλλάξετε στοιχεία απο το προιόν πατήστε (2).");
+                    int ans=scanner.nextInt();
+                    if (ans==1) {
+                        //scanner
+                        //changeOfEmployeeData()
+                    } else if(ans==2){
+                        System.out.println("Ποιό προιόν θα θέλατε να αλλάξετε. 1, 2, 3, 4, 5");
+                        int pr=scanner.nextInt();
+                        if (pr>=1 && pr<=5) {
+                            flag3=true;
+                            while(!flag4) {
+                                try {   
+                                    System.out.println("Ποιό στοιχείο απο το προιόν θα θέλατε να αλλάξετε. 1: όνομα προιόντος, 2: σημερινή ποσότητα, 3: χθεσινή ποσότητα, 4: προχθεσινή ποσότητα, 5: τιμή προιόνοτς, 6: κόστος προιόντος ");
+                                    int col=scanner.nextInt();
+                                    if (col>=1 && col<=6) {
+                                        flag4=true;
+                                        changeOfData(pr,col);
+                                    }
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Λάθος καταχώρηση.");
+                                }    
+                            }  
+                        }
+                    }       
+                } catch(InputMismatchException e) {
+            }       
+        }
+    } else if (answer==6) {
+            flag=false;
+    } else if (answer==7) {
+            boolean flag2 = false;
+            while(!flag2) {
+                try {    
+                    System.out.println("Πριν αποσυνδεθείτε θα θέλατε να δείτε την διαγραμματική αναπαράσταση των αποτελεσμάτων σας; Πατήστε (Y) για ΝΑΙ/ (Ν) για Όχι");
+                    String ans = scanner.nextLine();
+                    if (ans.equals("Y")) {
+                        flag2=true;
+                        Charts.main(null);
+                        System.exit(1);
+                    } else if (ans.equals("N")) {
+                        System.exit(1);
+                    } else {
+                        System.out.println("Λάθος καταχώρηση.");
+                    }
+                } catch (InputMismatchException e){
+                    System.out.println("Λάθος καταχώρηση.");
+                }    
+            }
+            System.exit(1);
         }
 
     }
@@ -408,5 +476,70 @@ public class MethodsUser {
         UseDB.syndeshxrhsthprotifora(username);
         UseDB.createTableDB(username, password);
     } 
-        
-}
+    public static int getcategory(){return category;}
+    private static void changeOfData(int pr, int col) {
+        boolean flag5= false;
+        while(!flag5) {
+            System.out.println("Δώστε τιμή");
+            if(scanner.hasNext()) {
+                scanner.nextLine();
+            }
+            if (col==1) {
+                try {
+                    String val=scanner.nextLine();
+                    flag5= true;
+                    UseDB.insertIntoDBString("product_name"+pr, val, username_local);
+                } catch (InputMismatchException e) {
+                    System.out.println("Λάθος καταχώρηση.");
+                }                              
+            } else if (col==2 ) {
+                if (scanner.hasNext()) {
+                    scanner.nextLine();
+                }
+                try {
+                    int val=scanner.nextInt();
+                    flag5= true;
+                    UseDB.insertIntoDBInt("pr_now"+pr, val, username_local);
+                } catch (InputMismatchException e) {
+                    System.out.println("Λάθος καταχώρηση.");
+                }
+            } else if (col==3) {
+                try {
+                    int val=scanner.nextInt();
+                    flag5= true;
+                    UseDB.insertIntoDBInt("pr_yesterday"+pr, val, username_local);
+                } catch (InputMismatchException e) {
+                    System.out.println("Λάθος καταχώρηση.");
+                }
+            } else if(col==4) {
+		        try {
+			        int val = scanner.nextInt();
+			        flag5 = true;
+			        UseDB.insertIntoDBInt("pr_db_yesterday" + pr, val, username_local);
+		        } catch (InputMismatchException e) {
+			        System.out.println("Λάθος καταχώρηση.");
+		        }
+            }else if(col==5) {
+                try {
+                    double val=scanner.nextDouble();
+                    flag5= true;
+                    UseDB.insertIntoDBDouble("price"+pr, val, username_local);
+                } catch (InputMismatchException e) {
+                    System.out.println("Λάθος καταχώρηση.");
+                }
+            } else if(col==6) {
+                try {
+                    double val=scanner.nextInt();
+                    flag5= true;
+                    UseDB.insertIntoDBDouble("pr_cost"+pr, val, username_local);
+                } catch (InputMismatchException e) {
+                    System.out.println("Λάθος καταχώρηση.");
+                }
+            }
+        }
+    }
+    public static void changeOfEmployeeData(int pr, int col) {
+        //
+    }
+}        
+

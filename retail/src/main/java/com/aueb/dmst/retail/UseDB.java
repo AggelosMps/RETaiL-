@@ -154,7 +154,13 @@ public class UseDB {
             PreparedStatement pS = connection.prepareStatement("UPDATE Manager SET "+ column +" = ? WHERE username = ?");
             pS.setDouble(1, value);
             pS.setString(2, username);
-            pS.executeUpdate();
+            int rowsAffected = pS.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Update successful.");
+            } else {
+                System.out.println("No rows were updated.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -166,7 +172,13 @@ public class UseDB {
             PreparedStatement pS = connection.prepareStatement("UPDATE Manager SET "+ column +" = ? WHERE username = ?");
             pS.setString(1, value);
             pS.setString(2, username);
-            pS.executeUpdate();
+            int rowsAffected = pS.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Update successful.");
+            } else {
+                System.out.println("No rows were updated.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -178,7 +190,13 @@ public class UseDB {
             PreparedStatement pS = connection.prepareStatement("UPDATE Manager SET "+ column +" = ? WHERE username = ?");
             pS.setInt(1, value);
             pS.setString(2, username);
-            pS.executeUpdate();
+            int rowsAffected = pS.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Update successful.");
+            } else {
+                System.out.println("No rows were updated.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
