@@ -422,7 +422,7 @@ public class MethodsUser {
                     System.out.println("Αν θα θέλατε να αλλάξετε στοιχεία απο το πρόγραμμα προσωπικού πατήστε (1), αλλιώς αν θα θέλατε να αλλάξετε στοιχεία απο το προιόν πατήστε (2).");
                     int ans=scanner.nextInt();
                     if (ans==1) {
-                        System.out.println("Τα στοιχεία ποιανού εργαζομένου θα θέλατε να αλλάξετε. 1, 2, 3, 4, 5")
+                        System.out.println("Τα στοιχεία ποιανού εργαζομένου θα θέλατε να αλλάξετε. 1, 2, 3, 4, 5");
                         int emp=scanner.nextInt();
                         if(emp>=1 && emp<=5) {
                             flag3=true;
