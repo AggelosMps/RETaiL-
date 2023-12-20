@@ -422,8 +422,12 @@ public class MethodsUser {
                     System.out.println("Αν θα θέλατε να αλλάξετε στοιχεία απο το πρόγραμμα προσωπικού πατήστε (1), αλλιώς αν θα θέλατε να αλλάξετε στοιχεία απο το προιόν πατήστε (2).");
                     int ans=scanner.nextInt();
                     if (ans==1) {
-                        //scanner
-                        //changeOfEmployeeData()
+                        System.out.println("Τα στοιχεία ποιανού εργαζομένου θα θέλατε να αλλάξετε. 1, 2, 3, 4, 5")
+                        int emp=scanner.nextInt();
+                        if(emp>=1 && emp<=5) {
+                            flag3=true;
+                            changeOfEmployeeData(emp);
+                        }
                     } else if(ans==2){
                         System.out.println("Ποιό προιόν θα θέλατε να αλλάξετε. 1, 2, 3, 4, 5");
                         int pr=scanner.nextInt();
@@ -444,6 +448,7 @@ public class MethodsUser {
                         }
                     }       
                 } catch(InputMismatchException e) {
+                    System.out.println("Λάθος καταχώρηση.");
             }       
         }
     } else if (answer==6) {
@@ -538,8 +543,21 @@ public class MethodsUser {
             }
         }
     }
-    public static void changeOfEmployeeData(int pr, int col) {
-        //
+    private static void changeOfEmployeeData(int emp) {
+        boolean flag6= false;
+        while(!flag6) {
+            System.out.println("Δώστε τιμή");
+            if(scanner.hasNext()) {
+                scanner.nextLine();
+            }
+            try{
+                String val=scanner.nextLine();
+                flag6=true;
+                UseDB.insertIntoDBString("employee"+emp, val, username_local);
+            } catch (InputMismatchException e) {
+                System.out.println("Λάθος καταχώρηση.");
+            }
+        }
     }
-}        
+}       
 
