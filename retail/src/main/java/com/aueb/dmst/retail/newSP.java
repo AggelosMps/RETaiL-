@@ -1,9 +1,12 @@
 package com.aueb.dmst.retail;
 
+import java.util.InputMismatchException;
+
 public class newSP {
     public static void main(String[] args) {
         boolean successful_login=false;
         while (!successful_login) {
+          
             int choice = MethodsUser.menu();
             if (choice == 1) {
                 Options.choice1();
@@ -14,8 +17,9 @@ public class newSP {
                 Options.choice3();
                 break;
             } else {
-                System.out.println("Invalid choice. Please select a valid option.");
+                System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
             }
+           
         }
     }
 }
