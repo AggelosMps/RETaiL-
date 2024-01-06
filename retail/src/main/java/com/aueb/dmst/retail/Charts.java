@@ -45,7 +45,7 @@ public class Charts extends Application {
 
            final PieChart chart = new PieChart(pieChartData);
            chart.setTitle("ΠΡΟΙΟΝΤΑ");
-
+           chart.setPrefSize(1000,1000);
            ((Group) pieChartScene.getRoot()).getChildren().add(chart);
            pieChartStage.setScene(pieChartScene);
            pieChartStage.show();
@@ -70,7 +70,7 @@ public class Charts extends Application {
         
         XYChart.Series<Number, Number> series2 =
                 new XYChart.Series<Number, Number>();
-        series2.setName("May");
+        series2.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name2"));
         series2.getData().add(new XYChart.Data(1, UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_db_yesterday2")));
         series2.getData().add(new XYChart.Data(2, UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_yesterday2")));
         series2.getData().add(new XYChart.Data(3, UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_now2")));
@@ -78,7 +78,7 @@ public class Charts extends Application {
         
         XYChart.Series<Number, Number> series3 =
                 new XYChart.Series<Number, Number>();
-        series3.setName("May");
+        series3.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name3"));
         series3.getData().add(new XYChart.Data(1, UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_db_yesterday3")));
         series3.getData().add(new XYChart.Data(2, UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_yesterday3")));
         series3.getData().add(new XYChart.Data(3, UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_now3")));
@@ -155,42 +155,42 @@ public class Charts extends Application {
         lineChartStage.setTitle("Line Chart Sample");
         final CategoryAxis x3Axis = new CategoryAxis();
         final NumberAxis y3Axis = new NumberAxis();
-         x3Axis.setLabel("Month");
+         x3Axis.setLabel("DAYS");
         final LineChart<String,Number> lineChart = 
                 new LineChart<String,Number>(x3Axis,y3Axis);
        
-        lineChart.setTitle("Stock Monitoring, 2010");
+        lineChart.setTitle("Ποσότητα αποθεμάτων");
                           
         XYChart.Series seriesb1 = new XYChart.Series();
-        seriesb1.setName("Product 1");
+        seriesb1.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name1"));
         
         seriesb1.getData().add(new XYChart.Data("ΠΡΟΧΘΕΣ",UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_db_yesterday1")));
         seriesb1.getData().add(new XYChart.Data("ΧΘΕΣ", UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_yesterday1")));
         seriesb1.getData().add(new XYChart.Data("ΣΗΜΕΡΑ", UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_now1")));
         
         XYChart.Series seriesb2 = new XYChart.Series();
-        seriesb2.setName("Product 2");
+        seriesb2.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name2"));
         
         seriesb2.getData().add(new XYChart.Data("ΠΡΟΧΘΕΣ",UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_db_yesterday2")));
         seriesb2.getData().add(new XYChart.Data("ΧΘΕΣ", UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_yesterday2")));
         seriesb2.getData().add(new XYChart.Data("ΣΗΜΕΡΑ", UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_now2")));
         
         XYChart.Series seriesb3 = new XYChart.Series();
-        seriesb3.setName("Product 3");
+        seriesb3.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name3"));
         
         seriesb3.getData().add(new XYChart.Data("ΠΡΟΧΘΕΣ",UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_db_yesterday3")));
         seriesb3.getData().add(new XYChart.Data("ΧΘΕΣ", UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_yesterday3")));
         seriesb3.getData().add(new XYChart.Data("ΣΗΜΕΡΑ", UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_now3")));
         
         XYChart.Series seriesb4 = new XYChart.Series();
-        seriesb4.setName("Product 4");
+        seriesb4.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name4"));
         
         seriesb4.getData().add(new XYChart.Data("ΠΡΟΧΘΕΣ",UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_db_yesterday4")));
         seriesb4.getData().add(new XYChart.Data("ΧΘΕΣ", UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_yesterday4")));
         seriesb4.getData().add(new XYChart.Data("ΣΗΜΕΡΑ", UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_now4")));
         
         XYChart.Series seriesb5 = new XYChart.Series();
-        seriesb5.setName("Product 5");
+        seriesb5.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name5"));
         
         seriesb5.getData().add(new XYChart.Data("ΠΡΟΧΘΕΣ",UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_db_yesterday5")));
         seriesb5.getData().add(new XYChart.Data("ΧΘΕΣ", UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_yesterday5")));
