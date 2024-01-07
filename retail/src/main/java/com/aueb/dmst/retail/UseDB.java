@@ -25,6 +25,11 @@ public class UseDB {
                     y = false;
                 }
             }
+
+            connection.close();
+            statement.close();
+            resultSet.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
             
@@ -46,24 +51,26 @@ public class UseDB {
                   truename = true;
                 }
             }
-        if (truename = true) {
-           ResultSet resultSet2 = statement.executeQuery("SELECT password FROM Manager ");
-            while (resultSet2.next()) {
-               String password = resultSet.getString("password");
-               if (password.equals(passwordToCheck)) {
-                  truepassword = true;
+            if (truename = true) {
+                ResultSet resultSet2 = statement.executeQuery("SELECT password FROM Manager ");
+                while (resultSet2.next()) {
+                    String password = resultSet.getString("password");
+                    if (password.equals(passwordToCheck)) {
+                        truepassword = true;
+                        resultSet2.close();
+                    }
                 }
             }
+            if (truename && truepassword) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-         if (truename && truepassword) {
-            return true;
-        } else {
-            return false;
-        }
-       } catch (SQLException e) {
-        e.printStackTrace();
-       }
-       return false;
+        return false;
 
     }
 
@@ -126,14 +133,17 @@ public class UseDB {
             insertStatement.executeUpdate();
 
             System.out.println("Manager data added successfully!");
-
+            
+            connection.close();
+            statement.close();              //ta kleinoume gia logous porwn
+            insertStatement.close();
             // Retrieve and display the saved revenue data
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM Manager ");
+            /*ResultSet resultSet = statement.executeQuery("SELECT * FROM Manager ");
             while (resultSet.next()) {
                 username = resultSet.getString("username");
                 password = resultSet.getString("password");
                 System.out.println("Username: " + username + ", Password: " + password);
-            }
+            }*/
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -161,6 +171,11 @@ public class UseDB {
             } else {
                 System.out.println("No rows were updated.");
             }
+
+            connection.close();
+            statement.close();
+            pS.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -179,6 +194,11 @@ public class UseDB {
             } else {
                 System.out.println("No rows were updated.");
             }
+
+            connection.close();
+            statement.close();
+            pS.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -197,6 +217,11 @@ public class UseDB {
             } else {
                 System.out.println("No rows were updated.");
             }
+
+            connection.close();
+            statement.close();
+            pS.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -213,6 +238,11 @@ public class UseDB {
                 return resultSet.getDouble(apantisi);
             }
         }
+
+        connection.close();
+        statement.close();
+        resultSet.close();
+
     } catch (SQLException e) {
         e.printStackTrace();
     }
@@ -226,6 +256,11 @@ public static String selectFromTableString(String username, String apantisi) {
         if (resultSet.next()) {
             return resultSet.getString(apantisi);   
         }
+
+        connection.close();
+        statement.close();
+        resultSet.close();
+
     } catch (SQLException e) {
         e.printStackTrace();
     }

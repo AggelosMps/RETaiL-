@@ -150,6 +150,9 @@ public class MethodsUser {
                 String employee = scanner.nextLine();
                 
                 UseDB.insertIntoDBString("employee"+count_employee++, employee, username);
+                if (count_employee>5) {
+                    count_employee = 1;
+                }
                 y = false;
             } catch (InputMismatchException e) {
                 System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
@@ -160,13 +163,13 @@ public class MethodsUser {
     public static void insertProduct_Name(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;
         while (y) {
-            System.out.println("Καταχωρήστε όνομα για προιόν"+count_name);         
+            System.out.println("Καταχωρήστε όνομα για προιόν"+count_name);
             try {
-                /*if (scanner.hasNext()) {
-                    scanner.nextLine();// clear the input buffer
-                }*/  
                 String product_name = scanner.nextLine();
                 UseDB.insertIntoDBString("product_name"+count_name++, product_name, username);
+                if (count_name>5) {
+                    count_name = 1;
+                }
                 y = false;
             } catch (InputMismatchException e) {
                 System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
@@ -175,14 +178,17 @@ public class MethodsUser {
     }
     public static void insertProduct_Now(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;
-              
+
         while (y) {
             System.out.println("Καταχωρήστε σημερινή ποσότητα για προιόν"+count_pr_now);
-            try {          
+            try {
                 int pr_now = scanner.nextInt();
                 if (pr_now > 0) {
                     y = false;
                     UseDB.insertIntoDBInt("pr_now"+count_pr_now++, pr_now, username);
+                    if (count_pr_now>5) {
+                        count_pr_now = 1;
+                    }
                 } else {
                     System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                 }
@@ -204,6 +210,9 @@ public class MethodsUser {
                 if (pr_yesterday > 0) {
                     y = false;
                     UseDB.insertIntoDBInt("pr_yesterday"+count_pr_yesterday++, pr_yesterday, username);
+                    if (count_pr_yesterday>5) {
+                        count_pr_yesterday = 1;
+                    }
                 } else {
                     System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                 }
@@ -225,13 +234,16 @@ public class MethodsUser {
                 if (pr_db_yesterday > 0) {
                     y = false;
                     UseDB.insertIntoDBInt("pr_db_yesterday"+count_pr_db_yesterday++, pr_db_yesterday, username);
+                    if (count_pr_db_yesterday>5) {
+                        count_pr_db_yesterday = 1;
+                    }
                 } else {
                     System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                 scanner.nextLine();
-            }    
+            }
         }
     }
     public static void insertPrice(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
@@ -241,18 +253,21 @@ public class MethodsUser {
                 System.out.println("Ποιά είναι η τιμή για προιόν"+count_price);
                 /*if (scanner.hasNext()) {
                     scanner.nextLine();// clear the input buffer
-                }*/            
+                }*/
                 double price = scanner.nextInt();
                 if (price > 0) {
                     y = false;
                     UseDB.insertIntoDBDouble("price"+count_price++, price, username);
+                    if (count_price>5) {
+                        count_price = 1;
+                    }
                 } else {
                     System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                 scanner.nextLine();
-            }    
+            }
         }
     }
     public static void insertProduct_Cost(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
@@ -262,11 +277,17 @@ public class MethodsUser {
                 System.out.println("Ποιό είναι το κόστος για προιόν"+count_pr_cost);
                 /*if (scanner.hasNext()) {
                     scanner.nextLine();// clear the input buffer
-                }*/          
+                }*/
                 double pr_cost = scanner.nextInt();
+
+                scanner.nextLine(); //auto to next line to bazoume epeidh xalage to input sta onomata twn proiontwn 2-5
+
                 if (pr_cost > 0) {
                     y = false;
                     UseDB.insertIntoDBDouble("pr_cost"+count_pr_cost++, pr_cost, username);
+                    if (count_pr_cost>5) {
+                        count_pr_cost = 1;
+                    }
                 } else {
                     System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                 }
@@ -494,9 +515,13 @@ public class MethodsUser {
             flag=false;
         } else if (answer==7) {
             boolean flag2 = false;
+            String bob = null;
             while(!flag2) {
                 System.out.println("Πριν αποσυνδεθείτε θα θέλατε να δείτε την διαγραμματική αναπαράσταση των αποτελεσμάτων σας; Πατήστε (Y) για ΝΑΙ/ (Ν) για Όχι");
-                String bob = scanner.nextLine();        
+                if (scanner.hasNextLine()) {
+                    scanner.nextLine();
+                }
+                bob = scanner.nextLine();        
                 if (bob.equals("Y")) {
                     flag2=true;
                     Charts.main(null);
@@ -526,6 +551,9 @@ public class MethodsUser {
             }*/
             if (col==1) {
                 try {
+                    if(scanner.hasNext()) {
+                        scanner.nextLine();
+                    }
                     String val=scanner.nextLine();
                     flag5= true;
                     UseDB.insertIntoDBString("product_name"+pr, val, username_local);
