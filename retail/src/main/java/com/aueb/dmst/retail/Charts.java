@@ -58,7 +58,7 @@ public class Charts extends Application {
         final NumberAxis yAxis = new NumberAxis();
         final AreaChart<Number,Number> ac = 
             new AreaChart<Number,Number>(xAxis,yAxis);
-        ac.setTitle("ΔΙΑΚΥΜΑΝΣΗ ΠΟΣΟΤΗΤΑΣ ΑΠΟΘΕΜΑΤΩΝ ΑΝΑ ΗΜΕΡΕΣ");
+        ac.setTitle("ΔΙΑΚΥΜΑΝΣΗ ΠΟΣΟΤΗΤΑΣ ΑΠΟΘΕΜΑΤΩΝ ΣΕ ΔΙΑΣΤΗΜΑ ΤΡΙΩΝ ΗΜΕΡΩΝ");
          //Καταχωρούμε τις τιμές των προιόντων για τις τρεις ημερες απο την βάση δεδομένων
         XYChart.Series<Number, Number> series1 =
                 new XYChart.Series<Number, Number>();
@@ -159,7 +159,7 @@ public class Charts extends Application {
         final LineChart<String,Number> lineChart = 
                 new LineChart<String,Number>(x3Axis,y3Axis);
        
-        lineChart.setTitle("ΠΟΣΟΤΗΤΑ ΑΠΟΘΕΜΑΤΩΝ");
+        lineChart.setTitle("ΠΟΣΟΤΗΤΑ ΑΠΟΘΕΜΑΤΩΝ ΣΕ ΔΙΑΣΤΗΜΑ ΤΡΙΩΝ ΗΜΕΡΩΝ");
          //καταχώρηση τιμών απο την database                 
         XYChart.Series seriesb1 = new XYChart.Series();
         seriesb1.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name1"));
