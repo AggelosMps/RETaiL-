@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
+import org.sqlite.SQLiteException;
+
 //Θα πρέπει να εισάγω την κλάση InsertIntoDB
 
 public class UseDB {
@@ -17,22 +19,33 @@ public class UseDB {
             connection = DriverManager.getConnection("jdbc:sqlite:Manager_data.db");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT username FROM Manager");
+
             while (resultSet.next()) {
                 String username = resultSet.getString("username");
                 if (username.equals(usernameToCheck)) {
                     y = true;
+                    break;
                 } else {
                     y = false;
                 }
             }
-
-            connection.close();
-            statement.close();
+            
             resultSet.close();
+            statement.close();
+            connection.close();
+            
 
+        } catch (SQLiteException e) {
+            //e.printStackTrace();
+            
         } catch (SQLException e) {
             e.printStackTrace();
-            
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+
+            }
         }
         return y;
 
@@ -45,30 +58,56 @@ public class UseDB {
             boolean truename = false;
             boolean truepassword = false;
             ResultSet resultSet = statement.executeQuery("SELECT username FROM Manager ");
+            String username = null;
             while (resultSet.next()) {
-               String username = resultSet.getString("username");
+               username = resultSet.getString("username");
                if (username.equals(usernameToCheck)) {
                   truename = true;
+                  break;
                 }
             }
             if (truename = true) {
-                ResultSet resultSet2 = statement.executeQuery("SELECT password FROM Manager ");
-                while (resultSet2.next()) {
+                PreparedStatement pS = connection.prepareStatement("SELECT password FROM Manager WHERE username = ? ");
+                pS.setString(1, username);
+                ResultSet resultSet2 = pS.executeQuery();
+                String password = resultSet2.getString("password");
+                /*while (resultSet2.next()) {
                     String password = resultSet.getString("password");
                     if (password.equals(passwordToCheck)) {
                         truepassword = true;
                         resultSet2.close();
                     }
+                }*/
+                if (password.equals(passwordToCheck)) {
+                    truepassword = true;
+                    resultSet2.close();
                 }
+                
+                resultSet2.close();
+                pS.close();
+                
             }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
             if (truename && truepassword) {
                 return true;
             } else {
                 return false;
             }
 
-        } catch (SQLException e) {
+        } catch(SQLiteException e) {
+            
+        }catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
         }
         return false;
 
@@ -134,9 +173,9 @@ public class UseDB {
 
             System.out.println("Manager data added successfully!");
             
-            connection.close();
-            statement.close();              //ta kleinoume gia logous porwn
             insertStatement.close();
+            statement.close();
+            connection.close();
             // Retrieve and display the saved revenue data
             /*ResultSet resultSet = statement.executeQuery("SELECT * FROM Manager ");
             while (resultSet.next()) {
@@ -172,12 +211,18 @@ public class UseDB {
                 System.out.println("No rows were updated.");
             }
 
-            connection.close();
-            statement.close();
             pS.close();
+            statement.close();
+            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
         }
     }
     public static void insertIntoDBString(String column, String value,String username) { //Αυτή εδώ θα μπει στην κλάση InsertIntoDB
@@ -195,12 +240,18 @@ public class UseDB {
                 System.out.println("No rows were updated.");
             }
 
-            connection.close();
-            statement.close();
             pS.close();
+            statement.close();
+            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
         }
     }
     public static void insertIntoDBInt(String column, int value, String username) { //Αυτή εδώ θα μπει στην κλάση InsertIntoDB
@@ -218,12 +269,18 @@ public class UseDB {
                 System.out.println("No rows were updated.");
             }
 
-            connection.close();
-            statement.close();
             pS.close();
+            statement.close();
+            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
         }
     }
     public static Number selectFromTableNumber(String username, String apantisi) {
@@ -239,13 +296,19 @@ public class UseDB {
             }
         }
 
-        connection.close();
-        statement.close();
         resultSet.close();
+        statement.close();
+        connection.close();
 
     } catch (SQLException e) {
         e.printStackTrace();
-    }
+    } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
+        }
     return 0;
 }
 public static String selectFromTableString(String username, String apantisi) {
@@ -257,13 +320,19 @@ public static String selectFromTableString(String username, String apantisi) {
             return resultSet.getString(apantisi);   
         }
 
-        connection.close();
-        statement.close();
         resultSet.close();
+        statement.close();
+        connection.close();
 
     } catch (SQLException e) {
         e.printStackTrace();
-    }
+    } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
+        }
     return null;
 }
 }
