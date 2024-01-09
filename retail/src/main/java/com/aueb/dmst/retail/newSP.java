@@ -6,7 +6,7 @@ public class newSP {
     public static void main(String[] args) {
         boolean successful_login=false;
         while (!successful_login) {
-          
+
             int choice = MethodsUser.menu();
             if (choice == 1) {
                 Options.choice1();
@@ -19,7 +19,7 @@ public class newSP {
             } else {
                 System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
             }
-           
+
         }
     }
 }
