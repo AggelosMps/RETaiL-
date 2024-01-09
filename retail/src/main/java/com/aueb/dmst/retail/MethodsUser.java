@@ -254,7 +254,7 @@ public class MethodsUser {
                 /*if (scanner.hasNext()) {
                     scanner.nextLine();// clear the input buffer
                 }*/
-                double price = scanner.nextInt();
+                double price = scanner.nextDouble();
                 if (price > 0) {
                     y = false;
                     UseDB.insertIntoDBDouble("price"+count_price++, price, username);
@@ -278,7 +278,7 @@ public class MethodsUser {
                 /*if (scanner.hasNext()) {
                     scanner.nextLine();// clear the input buffer
                 }*/
-                double pr_cost = scanner.nextInt();
+                double pr_cost = scanner.nextDouble();
 
                 scanner.nextLine(); //auto to next line to bazoume epeidh xalage to input sta onomata twn proiontwn 2-5
 
