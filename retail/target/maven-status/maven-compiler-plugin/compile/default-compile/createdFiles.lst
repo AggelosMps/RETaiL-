@@ -1,6 +1,6 @@
-com\aueb\dmst\retail\newSP.class
-com\aueb\dmst\retail\ApiRequest.class
-com\aueb\dmst\retail\Charts.class
-com\aueb\dmst\retail\Options.class
-com\aueb\dmst\retail\UseDB.class
-com\aueb\dmst\retail\MethodsUser.class
+com/aueb/dmst/retail/newSP.class
+com/aueb/dmst/retail/MethodsUser.class
+com/aueb/dmst/retail/ApiRequest.class
+com/aueb/dmst/retail/Charts.class
+com/aueb/dmst/retail/Options.class
+com/aueb/dmst/retail/UseDB.class
