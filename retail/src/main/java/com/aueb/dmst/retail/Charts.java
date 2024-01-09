@@ -45,7 +45,7 @@ public class Charts extends Application {
 
            final PieChart chart = new PieChart(pieChartData);
            chart.setTitle("ΠΡΟΙΟΝΤΑ");
-           chart.setPrefSize(1000,1000);
+           chart.setPrefSize(750,750);
            ((Group) pieChartScene.getRoot()).getChildren().add(chart);
            pieChartStage.setScene(pieChartScene);
            pieChartStage.show();
