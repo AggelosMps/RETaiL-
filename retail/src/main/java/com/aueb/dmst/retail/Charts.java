@@ -59,7 +59,7 @@ public class Charts extends Application {
         final AreaChart<Number,Number> ac = 
             new AreaChart<Number,Number>(xAxis,yAxis);
         ac.setTitle("ΔΙΑΚΥΜΑΝΣΗ ΠΟΣΟΤΗΤΑΣ ΑΠΟΘΕΜΑΤΩΝ ΑΝΑ ΗΜΕΡΕΣ");
- 
+         //Καταχωρούμε τις τιμές των προιόντων για τις τρεις ημερες απο την βάση δεδομένων
         XYChart.Series<Number, Number> series1 =
                 new XYChart.Series<Number, Number>();
         series1.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name1"));
@@ -119,7 +119,7 @@ public class Charts extends Application {
         bc.setTitle("ΠΟΣΟΤΗΤΑ ΠΡΟΙΟΝΤΩΝ");
         x2Axis.setLabel("ΠΡΟΙΟΝΤΑ");       
         y2Axis.setLabel("ΠΟΣΟΤΗΤΕΣ");
- 
+         // Καταχωρούμε για καθε κατηγορια bar (προχθες, χθες, σημερα) τις αντίστοιχες τιμές
         XYChart.Series seriesl1 = new XYChart.Series();
         seriesl1.setName("ΠΡΟΧΘΕΣ");       
         seriesl1.getData().add(new XYChart.Data(prod1, UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_db_yesterday1")));
@@ -159,8 +159,8 @@ public class Charts extends Application {
         final LineChart<String,Number> lineChart = 
                 new LineChart<String,Number>(x3Axis,y3Axis);
        
-        lineChart.setTitle("Ποσότητα αποθεμάτων");
-                          
+        lineChart.setTitle("ΠΟΣΟΤΗΤΑ ΑΠΟΘΕΜΑΤΩΝ");
+         //καταχώρηση τιμών απο την database                 
         XYChart.Series seriesb1 = new XYChart.Series();
         seriesb1.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name1"));
         
