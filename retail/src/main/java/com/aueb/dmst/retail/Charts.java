@@ -14,6 +14,13 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 
+/**
+ * Η κλάση Charts είναι μια εφαρμογή JavaFX που δημιουργεί και εμφανίζει
+ * διάφορα είδη διαγραμμάτων βάσει δεδομένων χρήστη που ανακτώνται από την βάση δεδομένων.
+ * Τα διαγράμματα περιλαμβάνουν Pie Chart, Area Chart, Bar Chart και Line Chart,
+ * αναπαριστώντας διάφορες πτυχές πληροφοριών των προϊόντων.
+ */
+
 
 public class Charts extends Application {
 
@@ -27,6 +34,7 @@ public class Charts extends Application {
            pieChartStage.setWidth(800);
            pieChartStage.setHeight(800);
 
+           // Δημιουργεί τα δεδομένα του PieChart με τα κατάλληλα στοιχεία από την DataBase
            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                    new PieChart.Data(UseDB.selectFromTableString(MethodsUser.username_local, "product_name1"), MethodsUser.total_revenues1),
                    new PieChart.Data(UseDB.selectFromTableString(MethodsUser.username_local, "product_name2"),MethodsUser.total_revenues2 ),
@@ -34,10 +42,10 @@ public class Charts extends Application {
                    new PieChart.Data(UseDB.selectFromTableString(MethodsUser.username_local, "product_name4"), MethodsUser.total_revenues4),
                    new PieChart.Data(UseDB.selectFromTableString(MethodsUser.username_local, "product_name5"), MethodsUser.total_revenues5));
 
-            // Calculate total sum for percentage calculation
+            // Υπολογίζει το σύνολο για τον ποσοστιαίο υπολογισμό
             double total = pieChartData.stream().mapToDouble(PieChart.Data::getPieValue).sum();
 
-            // Format and set the percentage labels
+            // Μορφοποίηση και ορισμός ετικετών ποσοστών
             pieChartData.forEach(data -> {
                double percentage = (data.getPieValue() / total) * 100;
                data.setName(String.format("%s (%.2f%%)", data.getName(), percentage));
@@ -50,7 +58,7 @@ public class Charts extends Application {
            pieChartStage.setScene(pieChartScene);
            pieChartStage.show();
         }
-        //Area Chart --------------------------------------
+        // Area Chart --------------------------------------
         
         Stage areaChartStage = new Stage();
         areaChartStage.setTitle("Area Chart Sample");
@@ -59,7 +67,7 @@ public class Charts extends Application {
         final AreaChart<Number,Number> ac = 
             new AreaChart<Number,Number>(xAxis,yAxis);
         ac.setTitle("ΔΙΑΚΥΜΑΝΣΗ ΠΟΣΟΤΗΤΑΣ ΑΠΟΘΕΜΑΤΩΝ ΣΕ ΔΙΑΣΤΗΜΑ ΤΡΙΩΝ ΗΜΕΡΩΝ");
-         //Καταχωρούμε τις τιμές των προιόντων για τις τρεις ημερες απο την βάση δεδομένων
+         // Καταχωρούμε τις τιμές των προιόντων για τις τρεις ημέρες απο την βάση δεδομένων
         XYChart.Series<Number, Number> series1 =
                 new XYChart.Series<Number, Number>();
         series1.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name1"));
@@ -102,8 +110,9 @@ public class Charts extends Application {
         areaChartStage.setScene(areaChartScene);
         areaChartStage.show();
         
-        //Bar Chart -------------------------------------------
+        // Bar Chart -------------------------------------------
         
+        // Διαδικασία για εύρεση των ονομάτων των προϊόντων από την βάση δεδομένων
         String prod1 = UseDB.selectFromTableString(MethodsUser.username_local, "product_name1");
         String prod2 = UseDB.selectFromTableString(MethodsUser.username_local, "product_name2");
         String prod3 = UseDB.selectFromTableString(MethodsUser.username_local, "product_name3");
@@ -119,7 +128,7 @@ public class Charts extends Application {
         bc.setTitle("ΠΟΣΟΤΗΤΑ ΠΡΟΙΟΝΤΩΝ");
         x2Axis.setLabel("ΠΡΟΙΟΝΤΑ");       
         y2Axis.setLabel("ΠΟΣΟΤΗΤΕΣ");
-         // Καταχωρούμε για καθε κατηγορια bar (προχθες, χθες, σημερα) τις αντίστοιχες τιμές
+         // Καταχωρούμε για κάθε κατηγορία bar (προχθές, χθες, σήμερα) τις αντίστοιχες τιμές
         XYChart.Series seriesl1 = new XYChart.Series();
         seriesl1.setName("ΠΡΟΧΘΕΣ");       
         seriesl1.getData().add(new XYChart.Data(prod1, UseDB.selectFromTableNumber(MethodsUser.username_local, "pr_db_yesterday1")));
@@ -149,7 +158,7 @@ public class Charts extends Application {
         barChartStage.setScene(barChartScene);
         barChartStage.show();
         
-        //Line Chart -------------------------------------
+        // Line Chart -------------------------------------
         
         Stage lineChartStage = new Stage();
         lineChartStage.setTitle("Line Chart Sample");
@@ -160,7 +169,7 @@ public class Charts extends Application {
                 new LineChart<String,Number>(x3Axis,y3Axis);
        
         lineChart.setTitle("ΠΟΣΟΤΗΤΑ ΑΠΟΘΕΜΑΤΩΝ ΣΕ ΔΙΑΣΤΗΜΑ ΤΡΙΩΝ ΗΜΕΡΩΝ");
-         //καταχώρηση τιμών απο την database                 
+         // Καταχωρούμε για κάθε γραμμή (προχθές, χθες, σήμερα) τις αντίστοιχες τιμές                 
         XYChart.Series seriesb1 = new XYChart.Series();
         seriesb1.setName(UseDB.selectFromTableString(MethodsUser.username_local, "product_name1"));
         

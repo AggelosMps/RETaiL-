@@ -7,6 +7,12 @@ import java.net.http.HttpResponse;
 import org.json.JSONObject;
 import java.io.IOException;
 
+/**
+ * Η κλάση ApiRequest χρησιμοποιείται για την αλληλεπίδραση με το OpenAI GPT-4 API
+ * προκειμένου να λαμβάνει απαντήσεις σε ερωτήσεις που αφορούν διάφορες λειτουργίες διαχείρισης
+ * ενός σούπερ μάρκετ.
+ */
+
 public class ApiRequest {
     
     public static String getApothema(String user) {
@@ -24,7 +30,7 @@ public class ApiRequest {
     }
 
     public static String getSchedule(String user) {
-        //String systemMessage = "The application involves creating a schedule for a supermarket. I will provide you with the operating days and hours of the store in the format <Day>, <store opening time>, <store closing time>, and Staff with the hours they can work in the format <employee name>, <Day they can work>, <hours they can work for that day>. Each store must have exactly 2 employees at the same time, each employee can work up to 8 hours a day. I want the results in the following format: <Day>, <employee name>, <start time of their schedule>, <end time of their schedule>, without any other comment";
+        // String systemMessage = "The application involves creating a schedule for a supermarket. I will provide you with the operating days and hours of the store in the format <Day>, <store opening time>, <store closing time>, and Staff with the hours they can work in the format <employee name>, <Day they can work>, <hours they can work for that day>. Each store must have exactly 2 employees at the same time, each employee can work up to 8 hours a day. I want the results in the following format: <Day>, <employee name>, <start time of their schedule>, <end time of their schedule>, without any other comment";
         String systemMessage = "The application involves creating a schedule for a supermarket. I will provide you with the operating days and hours of the store in the format Day, store opening time, store closing time, and Staff with the hours they can work in the format employee name, Day they can work, hours they can work for that day. Each store must have 2 employees at the same time, each employee can work up to 8 hours a day. Display it in the exact form using 2 tokens. <Day>, <employee name>, <start time of their schedule>, <end time of their schedule>";
         String userMessage = user;
         String response =  extractContent(chatGptConnection(systemMessage, userMessage));
@@ -39,7 +45,7 @@ public class ApiRequest {
     }
 
 
-    //Κόβει το String της απάντησης του Chat Gpt, (χρειάζαι και dependency στο maven)
+    // Κόβει το String της απάντησης του Chat Gpt
         public static String extractContent(String jsonString) {
         JSONObject jsonObject = new JSONObject(jsonString);
         String content = jsonObject.getJSONArray("choices")
@@ -49,7 +55,7 @@ public class ApiRequest {
         return content;
     }
 
-    //To request στο chatgpt 
+    // To request στο chatgpt 
     public static String chatGptConnection(String systemMessage, String userMessage) {
         String apiKey = readEnvironmentVariable("API_KEY");
         // Replace the URL with the correct OpenAI API endpoint
@@ -89,10 +95,10 @@ public class ApiRequest {
     public static String getStrings(String in) {
         String input = in;
 
-        // Διαχωρισμός του string σε δύο μέρη βάσει της κόμμας
+        // Διαχωρισμός του string σε δύο μέρη βάσει του κόμματος
         String[] parts = input.split(", ");
 
-        // Εξαγωγή του κειμένου αριστερά της κόμμας
+        // Εξαγωγή του κειμένου αριστερά του κόμματος
         String text = parts[0];
 
         return text;
@@ -101,10 +107,10 @@ public class ApiRequest {
     public static Integer getInt(String in) {
         String input = in;
 
-        // Διαχωρισμός του string σε δύο μέρη βάσει της κόμμας
+        // Διαχωρισμός του string σε δύο μέρη βάσει του κόμματος
         String[] parts = input.split(",");
         
-        // Εξαγωγή του ακέραιου δεξιά της κόμμας και μετατροπή του σε int
+        // Εξαγωγή του ακέραιου δεξιά του κόμματος και μετατροπή του σε int
         int number = Integer.parseInt(parts[1]);
 
         return number;

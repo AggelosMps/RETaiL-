@@ -6,7 +6,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 //Θα πρέπει να καλέσω την κλάση InsertIntoDB
 
-import javax.swing.plaf.synth.SynthScrollBarUI;
+/**
+ * Η κλάση MethodsUser παρέχει μεθόδους για τις λειτουργίες Αποθεμάτων, Τιμολόγησης, Διαχείρισης Προσωπικού, Υπολογισμό Εσόδων και Διαχείριση Δεδομένων.
+ * Για την εξυπηρέτηση των παραπάνω λειτουργιών υπάρχει επικοινωνία με τη βάση δεδομένων.
+ * Επίσης, παρέχει μεθόδους για την ανάκτηση απαντήσεων από το ChatGPT μέσω του API.
+ */
+
 public class MethodsUser {
     public static Scanner scanner = new Scanner(System.in);
     public static int count_employee=1;
@@ -386,7 +391,7 @@ public class MethodsUser {
             double revenues_today4;
             double revenues_yesterday5;
             double revenues_today5;
-            //product1
+            // Υπολογισμός εσόδων του πρώτου προϊόντος αυτές τις 3 μέρες
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday1").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday1")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday1").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday1").intValue());
                 revenues_yesterday1 = aDifference * (UseDB.selectFromTableNumber(username, "price1").doubleValue());
@@ -401,7 +406,7 @@ public class MethodsUser {
             }
             total_revenues1 = revenues_today1 + revenues_yesterday1;
             answersChatGPT(Double.toString(total_revenues1), username);
-            //product2
+            // Υπολογισμός εσόδων του δεύτερου προϊόντος αυτές τις 3 μέρες
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday2").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday2")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday2").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday2").intValue());
                 revenues_yesterday2 = aDifference * (UseDB.selectFromTableNumber(username, "price2").doubleValue());
@@ -416,7 +421,7 @@ public class MethodsUser {
             }
             total_revenues2 = revenues_today2 + revenues_yesterday2;
             answersChatGPT(Double.toString(revenues_today2), username);
-            //product3
+            // Υπολογισμός εσόδων του τρίτου προϊόντος αυτές τις 3 μέρες
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday3").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday3")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday3").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday3").intValue());
                 revenues_yesterday3 = aDifference * (UseDB.selectFromTableNumber(username, "price3").doubleValue());
@@ -431,7 +436,7 @@ public class MethodsUser {
             }
             total_revenues3 = revenues_today3 + revenues_yesterday3;
             answersChatGPT(Double.toString(revenues_today3), username);
-            //product 4
+            // Υπολογισμός εσόδων του τέταρτου προϊόντος αυτές τις 3 μέρες
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday4").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday4")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday4").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday4").intValue());
                 revenues_yesterday4 = aDifference * (UseDB.selectFromTableNumber(username, "price4").doubleValue());
@@ -446,7 +451,7 @@ public class MethodsUser {
             }
             total_revenues4 = revenues_today4 + revenues_yesterday4;
             answersChatGPT(Double.toString(revenues_today4), username);
-            //product5
+            // Υπολογισμός εσόδων του πέμπτου προϊόντος αυτές τις 3 μέρες
             if ((UseDB.selectFromTableNumber(username, "pr_yesterday5").intValue()) < (UseDB.selectFromTableNumber(username, "pr_db_yesterday5")).intValue()) {
                 aDifference = (UseDB.selectFromTableNumber(username, "pr_db_yesterday5").intValue()) - (UseDB.selectFromTableNumber(username, "pr_yesterday5").intValue());
                 revenues_yesterday5 = aDifference * (UseDB.selectFromTableNumber(username, "price5").doubleValue());
@@ -469,7 +474,7 @@ public class MethodsUser {
             System.out.println("Έσοδα για προϊόν 4: " + total_revenues4);
             System.out.println("Έσοδα για προϊόν 5: " + total_revenues5);
             System.out.println("Συνολικά έσοδα προϊόντων: " + total_Revenues);
-            category=1;
+            category=1; // Με την εκχώρηση της τιμής 1 στο category ενεργοποιείται η δυνατότητα για εκτέλεση του Pie Chart
             
         } else if(answer==5) {
             flag= true;

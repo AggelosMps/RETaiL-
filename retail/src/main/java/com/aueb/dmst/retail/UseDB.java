@@ -8,11 +8,19 @@ import java.io.IOException;
 import java.sql.*;
 import org.sqlite.SQLiteException;
 
-//Θα πρέπει να εισάγω την κλάση InsertIntoDB
+/**
+ * Η κλάση UseDB παρέχει λειτουργίες για τη διαχείριση και την αλληλεπίδραση με τη βάση δεδομένων SQLite.
+ * Η βάση δεδομένων χρησιμοποιείται για την αποθήκευση πληροφοριών σχετικά με διαχειριστές (Managers) και προϊόντα.
+ * Η κλάση περιλαμβάνει μεθόδους για τον έλεγχο της ύπαρξης χρηστών, τον έλεγχο ταυτότητας χρήστη, τη δημιουργία πινάκων στη βάση δεδομένων,
+ * καθώς και την εισαγωγή, επεξεργασία και ανάκτηση δεδομένων από τη βάση.
+ * Η κλάση επίσης παρέχει λειτουργίες για τη διαχείριση αρχείων και τον έλεγχο συνδέσεων χρηστών.
+ * Η επικοινωνία με τη βάση δεδομένων γίνεται μέσω του JDBC (Java Database Connectivity).
+ */
 
 public class UseDB {
     public static Connection connection = null;
 
+    // Έλεγχος για το αν υπάρχει ένα username στη βάση δεδομένων
     public static boolean usernameExist(String usernameToCheck) {
         boolean y = false;
         try {
@@ -36,7 +44,7 @@ public class UseDB {
             
 
         } catch (SQLiteException e) {
-            //e.printStackTrace();
+            
             
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,6 +59,7 @@ public class UseDB {
 
     }
 
+    // Έλεγχος για Log in
     public static boolean authenticateUser(String usernameToCheck, String passwordToCheck) {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Manager_data.db");
@@ -176,13 +185,7 @@ public class UseDB {
             insertStatement.close();
             statement.close();
             connection.close();
-            // Retrieve and display the saved revenue data
-            /*ResultSet resultSet = statement.executeQuery("SELECT * FROM Manager ");
-            while (resultSet.next()) {
-                username = resultSet.getString("username");
-                password = resultSet.getString("password");
-                System.out.println("Username: " + username + ", Password: " + password);
-            }*/
+            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

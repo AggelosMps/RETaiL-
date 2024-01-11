@@ -1,6 +1,10 @@
 package com.aueb.dmst.retail;
 
-import java.util.InputMismatchException;
+/**
+ * Η κλάση newSP αντιπροσωπεύει ένα πρόγραμμα ελέγχου εισόδου για ένα λιανεμπόριο.
+ * Το πρόγραμμα προσφέρει επιλογές στον χρήστη για να επιλέξει διάφορες λειτουργίες.
+ * Log in, Register και Exit, τα οποία εκτελούνται με την βοήθεια των κλάσεων MethodsUser, Options και UseDB.
+ */
 
 public class newSP {
     public static void main(String[] args) {
