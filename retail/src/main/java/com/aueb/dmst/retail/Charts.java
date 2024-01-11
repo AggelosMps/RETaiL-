@@ -49,7 +49,6 @@ public class Charts extends Application {
            ((Group) pieChartScene.getRoot()).getChildren().add(chart);
            pieChartStage.setScene(pieChartScene);
            pieChartStage.show();
-           pieChartStage.setFullScreen(true);
         }
         //Area Chart --------------------------------------
         
