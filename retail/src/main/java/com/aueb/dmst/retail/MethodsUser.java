@@ -51,7 +51,7 @@ public class MethodsUser {
         
         return answer;
         } catch (InputMismatchException e) {
-            System.out.println("Λαθος");
+            System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
             scanner.nextLine();
             return -1;
         } 
@@ -65,7 +65,7 @@ public class MethodsUser {
             System.out.println("1. Αποθέματα (Σας προτείνει το προιόν που πρέπει να αγοράσετε για να μεγιστοποιήσετε το κέρδος σας, βάση των πωλήσεων που έχετε κάνει τις προηγούμενες 3 μέρες.)");
             System.out.println("2. Τιμολόγηση (Σας προτείνει την καλύτερη τιμή για να μεγιστοποιήσετε το κέρδος σας, βάση των πωλήσεων που έχετε κάνει τις προηγούμενες 3 μέρες.)");
             System.out.println("3. Πρόγραμμα προσωπικού (Ωρολόγιο πρόγραμμα προσωπικού.)");
-            System.out.println("4. Οικονομικές καταστάσεις (Έσοδα, Έξοδα, Κέρδη επιχείρησης, έχοντας την επιλογή και για διαγραμματική αναπαράσταση.)");
+            System.out.println("4. Οικονομικές καταστάσεις (Κέρδη για κάθε ένα απο τα προϊόντα και συνολικά κέρδη επιχείρησης.)");
             System.out.println("5. Αλλαγή δεδομένων");
             System.out.println("6. Αποσύνδεση");
             System.out.println("7. Έξοδος");
@@ -482,37 +482,38 @@ public class MethodsUser {
             boolean flag4=false;
             while(!flag3) {
                 try {   
-                    System.out.println("Αν θα θέλατε να αλλάξετε στοιχεία απο το πρόγραμμα προσωπικού πατήστε (1), αλλιώς αν θα θέλατε να αλλάξετε στοιχεία απο το προιόν πατήστε (2).");
+                    System.out.println("Για να αλλάξετε στοιχεία απο το πρόγραμμα προσωπικού πατήστε (1)");
+		    System.out.println("Για να αλλάξετε στοιχεία απο τα προϊόντα πατήστε (2).");
                     int ans=scanner.nextInt();
                     if (ans==1) {
-                        System.out.println("Τα στοιχεία ποιανού εργαζομένου θα θέλατε να αλλάξετε. 1, 2, 3, 4, 5");
+                        System.out.println("Τα στοιχεία ποιανού εργαζομένου θα θέλατε να αλλάξετε. (1), (2), (3), (4), (5)");
                         int emp=scanner.nextInt();
                         if(emp>=1 && emp<=5) {
                             flag3=true;
                             changeOfEmployeeData(emp);
                         }
                     } else if(ans==2){
-                        System.out.println("Ποιό προιόν θα θέλατε να αλλάξετε. 1, 2, 3, 4, 5");
+                        System.out.println("Ποιό προιόν θα θέλατε να αλλάξετε (1), (2), (3), (4), (5)");
                         int pr=scanner.nextInt();
                         if (pr>=1 && pr<=5) {
                             flag3=true;
                             while(!flag4) {
                                 try {   
-                                    System.out.println("Ποιό στοιχείο απο το προιόν θα θέλατε να αλλάξετε. 1: όνομα προιόντος, 2: σημερινή ποσότητα, 3: χθεσινή ποσότητα, 4: προχθεσινή ποσότητα, 5: τιμή προιόνοτς, 6: κόστος προιόντος ");
+                                    System.out.println("Ποιό στοιχείο απο το προιόν"+ pr +" θα θέλατε να αλλάξετε; 1: όνομα προιόντος, 2: σημερινή ποσότητα, 3: χθεσινή ποσότητα, 4: προχθεσινή ποσότητα, 5: τιμή προιόνοτς, 6: κόστος προιόντος");
                                     int col=scanner.nextInt();
                                     if (col>=1 && col<=6) {
                                         flag4=true;
                                         changeOfData(pr,col);
                                     }
                                 } catch (InputMismatchException e) {
-                                    System.out.println("Λάθος καταχώρηση.");
+                                    System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                                     scanner.nextLine();
                                 }    
                             }  
                         }
                     }       
                 } catch(InputMismatchException e) {
-                    System.out.println("Λάθος καταχώρηση.");
+                    System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     scanner.nextLine();
                 }       
             }
@@ -534,7 +535,7 @@ public class MethodsUser {
                 } else if (bob.equals("N")) {
                     System.exit(1);
                 } else {
-                    System.out.println("Λάθος καταχώρηση.");
+                    System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                 }   
             }
             System.exit(1);
@@ -550,7 +551,7 @@ public class MethodsUser {
     private static void changeOfData(int pr, int col) {
         boolean flag5= false;
         while(!flag5) {
-            System.out.println("Δώστε τιμή");
+            System.out.println("Εισάγετε δεδομένο");
             /*if(scanner.hasNext()) {
                 scanner.nextLine();
             }*/
@@ -563,7 +564,7 @@ public class MethodsUser {
                     flag5= true;
                     UseDB.insertIntoDBString("product_name"+pr, val, username_local);
                 } catch (InputMismatchException e) {
-                    System.out.println("Λάθος καταχώρηση.");
+                    System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     scanner.nextLine();
                 }                              
             } else if (col==2 ) {
@@ -573,65 +574,65 @@ public class MethodsUser {
                 try {
                     int val=scanner.nextInt();
                     if (val < 0) {
-                        System.out.println("Λάθος καταχώρηση.");
+                        System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     } else {
                         flag5= true;
                         UseDB.insertIntoDBInt("pr_now"+pr, val, username_local);
                     }
                 } catch (InputMismatchException e) {
-                    System.out.println("Λάθος καταχώρηση.");
+                    System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     scanner.nextLine();
                 }
             } else if (col==3) {
                 try {
                     int val=scanner.nextInt();
                     if (val < 0) {
-                        System.out.println("Λάθος καταχώρηση.");
+                        System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     } else {
                     flag5= true;
                     UseDB.insertIntoDBInt("pr_yesterday"+pr, val, username_local);
                     }
                 } catch (InputMismatchException e) {
-                    System.out.println("Λάθος καταχώρηση.");
+                    System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     scanner.nextLine();
                 }
             } else if(col==4) {
 		        try {
 			        int val = scanner.nextInt();
                     if (val < 0) {
-                        System.out.println("Λάθος καταχώρηση.");
+                        System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     } else {
 			        flag5 = true;
 			        UseDB.insertIntoDBInt("pr_db_yesterday" + pr, val, username_local);
                     }
 		        } catch (InputMismatchException e) {
-			        System.out.println("Λάθος καταχώρηση.");
+			        System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     scanner.nextLine();
 		        }
             }else if(col==5) {
                 try {
                     double val=scanner.nextDouble();
                     if (val < 0) {
-                        System.out.println("Λάθος καταχώρηση.");
+                        System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     } else {
                         flag5= true;
                         UseDB.insertIntoDBDouble("price"+pr, val, username_local);
                     }
                 } catch (InputMismatchException e) {
-                    System.out.println("Λάθος καταχώρηση.");
+                    System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     scanner.nextLine();
                 }
             } else if(col==6) {
                 try {
                     double val=scanner.nextDouble();
                     if (val < 0) {
-                        System.out.println("Λάθος καταχώρηση.");
+                        System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     } else {
                     flag5= true;
                     UseDB.insertIntoDBDouble("pr_cost"+pr, val, username_local);
                     }
                 } catch (InputMismatchException e) {
-                    System.out.println("Λάθος καταχώρηση.");
+                    System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                     scanner.nextLine();
                 }
             }
@@ -640,7 +641,7 @@ public class MethodsUser {
     private static void changeOfEmployeeData(int emp) {
         boolean flag6= false;
         while(!flag6) {
-            System.out.println("Δώστε τιμή");
+            System.out.println("Εισάγετε δεδομένο");
             if(scanner.hasNext()) {
                 scanner.nextLine();
             }
@@ -649,7 +650,7 @@ public class MethodsUser {
                 flag6=true;
                 UseDB.insertIntoDBString("employee"+emp, val, username_local);
             } catch (InputMismatchException e) {
-                System.out.println("Λάθος καταχώρηση.");
+                System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
                 scanner.nextLine();
             }
         }
