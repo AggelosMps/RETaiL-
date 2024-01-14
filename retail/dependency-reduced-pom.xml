@@ -51,6 +51,31 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>com.aueb.dmst.retail.newSP</mainClass>
+            </manifest>
+          </archive>
+          <finalName>Retail</finalName>
+          <outputDirectory>${project.basedir}</outputDirectory>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
