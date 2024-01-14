@@ -6,32 +6,60 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
+import org.sqlite.SQLiteException;
+
+/**
+ * Η κλάση UseDB παρέχει λειτουργίες για τη διαχείριση και την αλληλεπίδραση με τη βάση δεδομένων SQLite.
+ * Η βάση δεδομένων χρησιμοποιείται για την αποθήκευση πληροφοριών σχετικά με διαχειριστές (Managers) και προϊόντα.
+ * Η κλάση περιλαμβάνει μεθόδους για τον έλεγχο της ύπαρξης χρηστών, τον έλεγχο ταυτότητας χρήστη, τη δημιουργία πινάκων στη βάση δεδομένων,
+ * καθώς και την εισαγωγή, επεξεργασία και ανάκτηση δεδομένων από τη βάση.
+ * Η κλάση επίσης παρέχει λειτουργίες για τη διαχείριση αρχείων και τον έλεγχο συνδέσεων χρηστών.
+ * Η επικοινωνία με τη βάση δεδομένων γίνεται μέσω του JDBC (Java Database Connectivity).
+ */
 
 public class UseDB {
     public static Connection connection = null;
 
+    // Έλεγχος για το αν υπάρχει ένα username στη βάση δεδομένων
     public static boolean usernameExist(String usernameToCheck) {
         boolean y = false;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Manager_data.db");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT username FROM Manager");
+
             while (resultSet.next()) {
                 String username = resultSet.getString("username");
                 if (username.equals(usernameToCheck)) {
                     y = true;
+                    break;
                 } else {
                     y = false;
                 }
             }
+            
+            resultSet.close();
+            statement.close();
+            connection.close();
+            
+
+        } catch (SQLiteException e) {
+            
+            
         } catch (SQLException e) {
             e.printStackTrace();
-            
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+
+            }
         }
         return y;
 
     }
 
+    // Έλεγχος για Log in
     public static boolean authenticateUser(String usernameToCheck, String passwordToCheck) {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Manager_data.db");
@@ -39,30 +67,58 @@ public class UseDB {
             boolean truename = false;
             boolean truepassword = false;
             ResultSet resultSet = statement.executeQuery("SELECT username FROM Manager ");
+            String username = null;
             while (resultSet.next()) {
-               String username = resultSet.getString("username");
+               username = resultSet.getString("username");
                if (username.equals(usernameToCheck)) {
                   truename = true;
+                  break;
                 }
             }
-        if (truename = true) {
-           ResultSet resultSet2 = statement.executeQuery("SELECT password FROM Manager ");
-            while (resultSet2.next()) {
-               String password = resultSet.getString("password");
-               if (password.equals(passwordToCheck)) {
-                  truepassword = true;
+            if (truename = true) {
+                PreparedStatement pS = connection.prepareStatement("SELECT password FROM Manager WHERE username = ? ");
+                pS.setString(1, username);
+                ResultSet resultSet2 = pS.executeQuery();
+                String password = resultSet2.getString("password");
+                /*while (resultSet2.next()) {
+                    String password = resultSet.getString("password");
+                    if (password.equals(passwordToCheck)) {
+                        truepassword = true;
+                        resultSet2.close();
+                    }
+                }*/
+                if (password.equals(passwordToCheck)) {
+                    truepassword = true;
+                    resultSet2.close();
                 }
+                
+                resultSet2.close();
+                pS.close();
+                
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+            if (truename && truepassword) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch(SQLiteException e) {
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
             }
         }
-         if (truename && truepassword) {
-            return true;
-        } else {
-            return false;
-        }
-       } catch (SQLException e) {
-        e.printStackTrace();
-       }
-       return false;
+        return false;
 
     }
 
@@ -125,14 +181,11 @@ public class UseDB {
             insertStatement.executeUpdate();
 
             System.out.println("Manager data added successfully!");
-
-            // Retrieve and display the saved revenue data
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM Manager ");
-            while (resultSet.next()) {
-                username = resultSet.getString("username");
-                password = resultSet.getString("password");
-                System.out.println("Username: " + username + ", Password: " + password);
-            }
+            
+            insertStatement.close();
+            statement.close();
+            connection.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -153,33 +206,84 @@ public class UseDB {
             PreparedStatement pS = connection.prepareStatement("UPDATE Manager SET "+ column +" = ? WHERE username = ?");
             pS.setDouble(1, value);
             pS.setString(2, username);
-            pS.executeUpdate();
+            int rowsAffected = pS.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Update successful.");
+            } else {
+                System.out.println("No rows were updated.");
+            }
+
+            pS.close();
+            statement.close();
+            connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
         }
     }
-    public static void insertIntoDBString(String column, String value,String username) {
+    public static void insertIntoDBString(String column, String value,String username) { //Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Manager_data.db");
             Statement statement = connection.createStatement();
             PreparedStatement pS = connection.prepareStatement("UPDATE Manager SET "+ column +" = ? WHERE username = ?");
             pS.setString(1, value);
             pS.setString(2, username);
-            pS.executeUpdate();
+            int rowsAffected = pS.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Update successful.");
+            } else {
+                System.out.println("No rows were updated.");
+            }
+
+            pS.close();
+            statement.close();
+            connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
         }
     }
-    public static void insertIntoDBInt(String column, int value, String username) {
+    public static void insertIntoDBInt(String column, int value, String username) { //Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Manager_data.db");
             Statement statement = connection.createStatement();
             PreparedStatement pS = connection.prepareStatement("UPDATE Manager SET "+ column +" = ? WHERE username = ?");
             pS.setInt(1, value);
             pS.setString(2, username);
-            pS.executeUpdate();
+            int rowsAffected = pS.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Update successful.");
+            } else {
+                System.out.println("No rows were updated.");
+            }
+
+            pS.close();
+            statement.close();
+            connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
         }
     }
     public static Number selectFromTableNumber(String username, String apantisi) {
@@ -194,9 +298,20 @@ public class UseDB {
                 return resultSet.getDouble(apantisi);
             }
         }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+
     } catch (SQLException e) {
         e.printStackTrace();
-    }
+    } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
+        }
     return 0;
 }
 public static String selectFromTableString(String username, String apantisi) {
@@ -207,9 +322,20 @@ public static String selectFromTableString(String username, String apantisi) {
         if (resultSet.next()) {
             return resultSet.getString(apantisi);   
         }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+
     } catch (SQLException e) {
         e.printStackTrace();
-    }
+    } finally {
+            try { 
+                connection.close();
+            } catch (SQLException e) {
+                
+            }
+        }
     return null;
 }
 }
