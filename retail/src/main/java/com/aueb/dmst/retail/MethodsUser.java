@@ -521,18 +521,18 @@ public class MethodsUser {
             flag=false;
         } else if (answer==7) {
             boolean flag2 = false;
+	    Scanner inp = new Scanner(System.in);
             String bob = null;
             while(!flag2) {
-                System.out.println("Πριν αποσυνδεθείτε θα θέλατε να δείτε την διαγραμματική αναπαράσταση των αποτελεσμάτων σας; Πατήστε (Y) για ΝΑΙ/ (Ν) για Όχι");
-                if (scanner.hasNextLine()) {
-                    scanner.nextLine();
-                }
-                bob = scanner.nextLine();        
-                if (bob.equals("Y")) {
+                System.out.println("Πριν αποσυνδεθείτε θα θέλατε να δείτε την διαγραμματική αναπαράσταση των αποτελεσμάτων σας; Πατήστε (Y) για ΝΑΙ/ (Ν) για Όχι. (Μόνο λατινικούς χαρακτήρες)");
+                bob = inp.nextLine();       
+                if (bob.equals("N")) {
                     flag2=true;
                     Charts.main(null);
+		    inp.close();
                     System.exit(1);
-                } else if (bob.equals("N")) {
+                } else if (bob.equals("O")) {
+		    inp.close();
                     System.exit(1);
                 } else {
                     System.out.println("Λάθος καταχώρηση, παρακαλώ προσπαθήστε ξανά");
