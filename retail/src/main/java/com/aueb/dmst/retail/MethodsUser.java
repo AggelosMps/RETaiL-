@@ -62,10 +62,10 @@ public class MethodsUser {
         username_local = username;
         while (flag) {    
             System.out.println("Σε ποιόν τομέα θέλετε να σας εξυπηρετήσουμε;");
-            System.out.println("1. Αποθέματα (Σας προτείνει το προιόν που πρέπει να αγοράσετε για να μεγιστοποιήσετε το κέρδος σας, βάση των πωλήσεων που έχετε κάνει τις προηγούμενες 3 μέρες.)");
+            System.out.println("1. Αποθέματα (Σας προτείνει το προϊόν που πρέπει να αγοράσετε για να μεγιστοποιήσετε το κέρδος σας, βάση των πωλήσεων που έχετε κάνει τις προηγούμενες 3 μέρες.)");
             System.out.println("2. Τιμολόγηση (Σας προτείνει την καλύτερη τιμή για να μεγιστοποιήσετε το κέρδος σας, βάση των πωλήσεων που έχετε κάνει τις προηγούμενες 3 μέρες.)");
             System.out.println("3. Πρόγραμμα προσωπικού (Ωρολόγιο πρόγραμμα προσωπικού.)");
-            System.out.println("4. Οικονομικές καταστάσεις (Κέρδη για κάθε ένα απο τα προϊόντα και συνολικά κέρδη επιχείρησης.)");
+            System.out.println("4. Οικονομικές καταστάσεις (Έσοδα για κάθε ένα από τα προϊόντα και συνολικά έσοδα επιχείρησης.)");
             System.out.println("5. Αλλαγή δεδομένων");
             System.out.println("6. Αποσύνδεση");
             System.out.println("7. Έξοδος");
@@ -168,7 +168,7 @@ public class MethodsUser {
     public static void insertProduct_Name(String username) {//Αυτή εδώ θα μπει στην κλάση InsertIntoDB
         boolean y = true;
         while (y) {
-            System.out.println("Καταχωρήστε όνομα για προιόν"+count_name);
+            System.out.println("Καταχωρήστε όνομα για προϊόν"+count_name);
             try {
                 String product_name = scanner.nextLine();
                 UseDB.insertIntoDBString("product_name"+count_name++, product_name, username);
@@ -185,7 +185,7 @@ public class MethodsUser {
         boolean y = true;
 
         while (y) {
-            System.out.println("Καταχωρήστε σημερινή ποσότητα για προιόν"+count_pr_now);
+            System.out.println("Καταχωρήστε σημερινή ποσότητα για προϊόν"+count_pr_now);
             try {
                 int pr_now = scanner.nextInt();
                 if (pr_now > 0) {
@@ -207,7 +207,7 @@ public class MethodsUser {
         boolean y = true;       
         while (y) {
             try {
-                System.out.println("Καταχωρήστε χθεσινή ποσότητα για προιόν"+count_pr_yesterday);
+                System.out.println("Καταχωρήστε χθεσινή ποσότητα για προϊόν"+count_pr_yesterday);
                 /*if (scanner.hasNext()) {
                     scanner.nextLine();// clear the input buffer
                 }*/          
@@ -231,7 +231,7 @@ public class MethodsUser {
         boolean y = true;       
         while (y) {
             try {
-                System.out.println("Καταχωρήστε προχθεσινή ποσότητα για προιόν"+count_pr_db_yesterday);
+                System.out.println("Καταχωρήστε προχθεσινή ποσότητα για προϊόν"+count_pr_db_yesterday);
                 /*if (scanner.hasNext()) {
                     scanner.nextLine();// clear the input buffer
                 }*/           
@@ -255,7 +255,7 @@ public class MethodsUser {
         boolean y = true;
         while (y) {
             try {
-                System.out.println("Ποιά είναι η τιμή για προιόν"+count_price);
+                System.out.println("Ποιά είναι η τιμή για προϊόν"+count_price);
                 /*if (scanner.hasNext()) {
                     scanner.nextLine();// clear the input buffer
                 }*/
@@ -279,7 +279,7 @@ public class MethodsUser {
         boolean y = true;
         while (y) {
             try {
-                System.out.println("Ποιό είναι το κόστος για προιόν"+count_pr_cost);
+                System.out.println("Ποιό είναι το κόστος για προϊόν"+count_pr_cost);
                 /*if (scanner.hasNext()) {
                     scanner.nextLine();// clear the input buffer
                 }*/
@@ -482,8 +482,8 @@ public class MethodsUser {
             boolean flag4=false;
             while(!flag3) {
                 try {   
-                    System.out.println("Για να αλλάξετε στοιχεία απο το πρόγραμμα προσωπικού πατήστε (1)");
-		    System.out.println("Για να αλλάξετε στοιχεία απο τα προϊόντα πατήστε (2).");
+                    System.out.println("Για να αλλάξετε στοιχεία από το πρόγραμμα προσωπικού πατήστε (1)");
+		            System.out.println("Για να αλλάξετε στοιχεία από τα προϊόντα πατήστε (2).");
                     int ans=scanner.nextInt();
                     if (ans==1) {
                         System.out.println("Τα στοιχεία ποιανού εργαζομένου θα θέλατε να αλλάξετε. (1), (2), (3), (4), (5)");
@@ -493,13 +493,13 @@ public class MethodsUser {
                             changeOfEmployeeData(emp);
                         }
                     } else if(ans==2){
-                        System.out.println("Ποιό προιόν θα θέλατε να αλλάξετε (1), (2), (3), (4), (5)");
+                        System.out.println("Ποιό προϊόν θα θέλατε να αλλάξετε (1), (2), (3), (4), (5)");
                         int pr=scanner.nextInt();
                         if (pr>=1 && pr<=5) {
                             flag3=true;
                             while(!flag4) {
                                 try {   
-                                    System.out.println("Ποιό στοιχείο απο το προιόν"+ pr +" θα θέλατε να αλλάξετε; 1: όνομα προιόντος, 2: σημερινή ποσότητα, 3: χθεσινή ποσότητα, 4: προχθεσινή ποσότητα, 5: τιμή προιόνοτς, 6: κόστος προιόντος");
+                                    System.out.println("Ποιό στοιχείο από το προϊόν"+ pr +" θα θέλατε να αλλάξετε; 1: όνομα προιόντος, 2: σημερινή ποσότητα, 3: χθεσινή ποσότητα, 4: προχθεσινή ποσότητα, 5: τιμή προιόνοτς, 6: κόστος προιόντος");
                                     int col=scanner.nextInt();
                                     if (col>=1 && col<=6) {
                                         flag4=true;
@@ -548,7 +548,7 @@ public class MethodsUser {
         UseDB.createTableDB(username, password);
     } 
     public static int getChartflag(){return Chartsflag;}
-    private static void changeOfData(int pr, int col) {
+    private static void changeOfData(int pr, int col) { // Μέθοδος αλλαγής δεδομένων προϊόντων
         boolean flag5= false;
         while(!flag5) {
             System.out.println("Εισάγετε δεδομένο");
@@ -638,7 +638,7 @@ public class MethodsUser {
             }
         }
     }
-    private static void changeOfEmployeeData(int emp) {
+    private static void changeOfEmployeeData(int emp) { // Μέθοδος αλλαγής δεδομένων προσωπικού
         boolean flag6= false;
         while(!flag6) {
             System.out.println("Εισάγετε δεδομένο");
