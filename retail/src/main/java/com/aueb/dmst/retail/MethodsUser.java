@@ -28,7 +28,7 @@ public class MethodsUser {
     public static double total_revenues4;
     public static double total_revenues5;
     public static String username_local;
-    public static int category=0;
+    public static int Chartsflag=0;
     public static boolean flag = true;
     public static String nameUser() {
         System.out.println("Δώσε το όνομα σου");
@@ -474,7 +474,7 @@ public class MethodsUser {
             System.out.println("Έσοδα για προϊόν 4: " + total_revenues4);
             System.out.println("Έσοδα για προϊόν 5: " + total_revenues5);
             System.out.println("Συνολικά έσοδα προϊόντων: " + total_Revenues);
-            category=1; // Με την εκχώρηση της τιμής 1 στο category ενεργοποιείται η δυνατότητα για εκτέλεση του Pie Chart
+            Chartsflag=1; // Με την εκχώρηση της τιμής 1 στο category ενεργοποιείται η δυνατότητα για εκτέλεση των Chart
             
         } else if(answer==5) {
             flag= true;
@@ -547,7 +547,7 @@ public class MethodsUser {
         UseDB.syndeshxrhsthprotifora(username);
         UseDB.createTableDB(username, password);
     } 
-    public static int getcategory(){return category;}
+    public static int getChartflag(){return Chartsflag;}
     private static void changeOfData(int pr, int col) {
         boolean flag5= false;
         while(!flag5) {
