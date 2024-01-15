@@ -547,7 +547,7 @@ public class MethodsUser {
         UseDB.syndeshxrhsthprotifora(username);
         UseDB.createTableDB(username, password);
     } 
-    public static int getcategory(){return Chartsflag;}
+    public static int getChartflag(){return Chartsflag;}
     private static void changeOfData(int pr, int col) {
         boolean flag5= false;
         while(!flag5) {
