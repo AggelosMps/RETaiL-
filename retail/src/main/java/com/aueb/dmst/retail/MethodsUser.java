@@ -524,7 +524,7 @@ public class MethodsUser {
             Scanner inp = new Scanner(System.in);
             String bob = null;
             while(!flag2) {
-                System.out.println("Πριν αποσυνδεθείτε θα θέλατε να δείτε την διαγραμματική αναπαράσταση των αποτελεσμάτων σας; Πατήστε (Y) για ΝΑΙ/ (Ν) για Όχι. (Μόνο λατινικούς χαρακτήρες)");
+                System.out.println("Πριν αποσυνδεθείτε θα θέλατε να δείτε την διαγραμματική αναπαράσταση των αποτελεσμάτων σας; Πατήστε (N) για ΝΑΙ/ (O) για Όχι. (Μόνο λατινικούς χαρακτήρες)");
                 bob = inp.nextLine();        
                 if (bob.equals("N")) {
                     flag2=true;
