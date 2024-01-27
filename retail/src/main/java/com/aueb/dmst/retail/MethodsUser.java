@@ -532,6 +532,7 @@ public class MethodsUser {
 		    inp.close();
                     System.exit(1);
                 } else if (bob.equals("O")) {
+		    System.out.println("Έξοδος...");
 		    inp.close();
                     System.exit(1);
                 } else {
